@@ -4,7 +4,6 @@ import { defaultOptions } from "../settings";
 import { urlFor } from "../server/client";
 import { motion } from "framer-motion";
 import { fadeCardAnimate } from "../utils/motion";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 const CourseCard = ({
   item,
   index,
@@ -23,12 +22,11 @@ const CourseCard = ({
           <h3 className="text-3xl my-5">{item.name}</h3>
           <div className="flex  gap-2 text-2xl">
             {item?.stack?.map((s, index) => (
-              <LazyLoadImage
+              <img
                 className="w-10 object-cover hover:scale-110 transition-all duration-300 cursor-pointer"
                 key={index}
                 src={urlFor(s)}
                 alt={s?._type}
-                effect="blur"
               />
             ))}
           </div>
