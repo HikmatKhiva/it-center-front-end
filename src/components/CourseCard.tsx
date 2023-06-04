@@ -12,8 +12,6 @@ const CourseCard = ({
   item: ICourse;
   index: number;
 }): JSX.Element => {
-  console.log(item);
-
   return (
     <motion.div
       key={index}
