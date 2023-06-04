@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer {
+  .not-found {
+    height: calc(100vh - 110px);
+    @apply bg-center bg-cover bg-no-repeat;
+  }
+  .container {
+    @apply px-5 xl:px-0
+  }
+  .hero-img {
+    @apply xl:w-[600px] lg:w-[500px] w-[400px];
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 400px;
+  }
+  img {
+    max-width: max-content;
+    height:100% !important;
+  }
+  section {
+    flex-grow: 1
+  }
+  .center {
+    @apply grid place-items-center;
+  }
+  .st0 {
+    fill-rule: evenodd;
+    clip-rule: evenodd;
+    fill: #93ce03;
+  }
+
+  .st1 {
+    fill-rule: evenodd;
+    clip-rule: evenodd;
+    fill: #83c805;
+  }
+
+  .st2 {
+    fill-rule: evenodd;
+    clip-rule: evenodd;
+    fill: #abdb06;
+  }
+
+  .st3 {
+    fill-rule: evenodd;
+    clip-rule: evenodd;
+    fill: #a1d606;
+  }
+  .st4 {
+    fill: #93ce03;
+  }
+}
