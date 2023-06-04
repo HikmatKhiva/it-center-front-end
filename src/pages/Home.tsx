@@ -12,8 +12,8 @@ const Home = () => {
     <>
       <section id="home" className="home bg-gray-100 center dark:bg-dark">
         <div className="container mx-auto flex flex-wrap lg:justify-between justify-center items-center">
-          <div className="title">
-            <motion.h1
+          <h1 className="title">
+            <motion.span
               variants={fadeTitle("left", 1, 2)}
               initial="hidden"
               animate="visible"
@@ -21,8 +21,8 @@ const Home = () => {
             >
               Sizning <span className="text-main">IT</span>
               karyerangizni <br /> shu yerdan boshlang!
-            </motion.h1>
-          </div>
+            </motion.span>
+          </h1>
 
           <Tilt options={defaultOptions}>
             <motion.img
