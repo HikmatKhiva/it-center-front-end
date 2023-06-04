@@ -57,13 +57,6 @@ export interface INews {
   _id?: string;
   _type?: string;
 }
-
-export interface ISource {
-  _key?: string;
-  _type?: string;
-  asset?:any;
-}
-
 export interface ICourse {
   mentor?: string
   name?: string
