@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="w-full sm:w-fit">
             <Logo />
           </div>
-          <nav className="flex-grow  sm:ml-10">
+          <nav className="flex-grow my-3 lg:my-0 sm:ml-10">
             <motion.ul
               variants={container}
               className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-5 gap-y-2 self-start"
