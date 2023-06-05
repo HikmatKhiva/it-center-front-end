@@ -3,6 +3,7 @@ import { RootState } from "../store/app";
 const initialState = {
   themeMode: "light",
   isLight: false,
+  isOpen: false,
 };
 const settingsSlice = createSlice({
   name: "setting",
@@ -15,8 +16,14 @@ const settingsSlice = createSlice({
       state.isLight ? (state.themeMode = "light") : (state.themeMode = "dark");
       state.isLight = !state.isLight;
     },
+    toggleMobileNav: (state) => {
+      state.isOpen = !state.isOpen;
+    },
+    toggleHideMobileNav: (state) => {
+      state.isOpen = false
+    }
   },
 });
-export const { changeThemeMode, handleChangeThemeMode } = settingsSlice.actions;
+export const { changeThemeMode, handleChangeThemeMode, toggleMobileNav, toggleHideMobileNav } = settingsSlice.actions;
 export const selectThemeMode = (state: RootState) => state.setting.themeMode;
 export default settingsSlice.reducer;

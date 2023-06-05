@@ -2,12 +2,11 @@ import { Logo } from "../animationElement";
 import { navigation } from "../settings";
 import { container } from "../utils/motion";
 import NavItem from "../components/NavItem";
-import { motion, useCycle } from "framer-motion";
+import { motion} from "framer-motion";
 import ThemeIcon from "../components/ThemeIcon";
 import MobileNav from "../components/mobile/MobileNav";
 import MenuToggle from "../components/mobile/MenuToggle";
 const Navbar = () => {
-  const [isOpen, toggleOpen] = useCycle<boolean>(false, true);
   return (
     <header className="h-[70px] items-center flex border-b-2 sticky top-0 bg-white z-20 dark:bg-dark dark:border-main  ">
       <motion.nav className="container mx-auto flex justify-between items-center ">
@@ -19,8 +18,8 @@ const Navbar = () => {
             ))}
           </motion.ul>
           <motion.div className="lg:hidden flex items-center">
-            <MenuToggle isOpen={isOpen} toggle={toggleOpen} />
-            <MobileNav isOpen={isOpen} toggle={toggleOpen} />
+            <MenuToggle  />
+            <MobileNav />
           </motion.div>
           <ThemeIcon />
         </div>

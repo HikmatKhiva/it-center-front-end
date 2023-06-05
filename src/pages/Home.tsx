@@ -23,7 +23,6 @@ const Home = () => {
               karyerangizni <br /> shu yerdan boshlang!
             </motion.span>
           </h1>
-
           <Tilt options={defaultOptions}>
             <motion.img
               variants={heroImage}

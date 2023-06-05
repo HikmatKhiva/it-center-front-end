@@ -2,9 +2,13 @@ import { INavigation } from "../types/types";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { fadeNav } from "../utils/motion";
+import { useAppDispatch } from "../hooks/app";
+import { toggleHideMobileNav } from "../redux/reducer/setting";
 const NavItem = ({ nav, index }: { nav: INavigation; index: number }) => {
+  const dispatch = useAppDispatch()
   return (
     <motion.li
+      onClick={() => dispatch(toggleHideMobileNav())}
       variants={fadeNav(index * 0.2, 1)}
       className="capitalize  hover:text-main dark:text-main dark:hover:text-white transition duration-300 font-normal"
       initial="start"

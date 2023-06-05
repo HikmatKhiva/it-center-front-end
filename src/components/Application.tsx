@@ -38,8 +38,8 @@ const Application = () => {
     }
   };
   return (
-    <form className="lg:w-[700px] mx-auto my-5 dark:bg-light-dark bg-white py-10 rounded-md">
-      <div className="px-20">
+    <form className="lg:w-[700px] w-full mx-auto my-5 dark:bg-light-dark bg-white py-10 rounded-md">
+      <div className="lg:px-20 px-5">
         <input
           type="text"
           onChange={handleChangeInput}

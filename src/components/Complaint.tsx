@@ -35,7 +35,7 @@ const Complaint = () => {
   ) => setComplaint((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   return (
     <form className="lg:w-[700px] mx-auto my-5 dark:bg-light-dark bg-white py-5 rounded-md">
-      <div className="px-20">
+      <div className="lg:px-20 px-5">
         <div className="mb-2">
           <label
             htmlFor=""
