@@ -15,7 +15,6 @@ const Course = () => {
         <h2 className="text-3xl capitalize">Kurslar</h2>
       </div>
       <div className="container mx-auto flex justify-center flex-wrap flex-grow gap-5">
-        {/* <Remount /> */}
         {data && !loading && !error ? (
           data?.map((course: ICourse, index: number) => (
             <CourseCard key={course.name} item={course} index={index} />

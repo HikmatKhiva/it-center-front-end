@@ -26,6 +26,11 @@
   .center {
     @apply grid place-items-center;
   }
+
+  .location-btn:hover ~ .location-info {
+    display: flex ;
+    opacity: 1 !important;
+  }
   .st0 {
     fill-rule: evenodd;
     clip-rule: evenodd;

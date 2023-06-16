@@ -10,6 +10,7 @@ export interface ISocial { /* social */
   url?: string;
   icon?: any;
   color?: string;
+  image?: any
 }
 export interface ITeamSocial { /* */
   name: string;
@@ -17,18 +18,24 @@ export interface ITeamSocial { /* */
   icon: string;
 }
 export interface ITeam {
-  id: number;
+  _id: string;
   name: string;
   experience: string;
-  profession: string;
-  img: any;
+  occupation: string;
+  image: any;
   social: ISocial[];
+  stacks: ISocial[]
 }
 export interface IFooterContact {
-  id:number
-  title:string
-  url:string
-  content:string
+  id: number
+  title: string
+  url: string
+  content: string
+}
+
+export interface IMentorStack {
+  url: string,
+  image: any
 }
 
 interface IStack {
@@ -66,6 +73,43 @@ export interface ICourse {
   _rev?: string
   _type?: string
   _updatedAt?: string
-  duration?:string
-  url?:string
+  duration?: string
+  url?: string
+}
+
+export interface I_IP {
+  asn?: string
+  city?: string
+  continent_code?: string
+  country?: string
+  country_area?: number
+  country_calling_code?: string
+  country_capital?: string
+  country_code?: string
+  country_code_iso3?: string
+  country_name?: string
+  country_population?: number
+  country_tld?: string
+  currency?: string
+  currency_name?: string
+  in_eu?: boolean
+  ip?: string
+  languages?: string
+  latitude?: number
+  longitude?: number
+  network?: string
+  org?: string
+  postal?: null | string | any
+  region?: string
+  region_code?: string
+  timezone?: string
+  utc_offset?: string
+  version?: string
+}
+
+export interface IAboutCard {
+  id: number
+  title: string
+  image: any
+  graduates:number
 }

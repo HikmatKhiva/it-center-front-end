@@ -10,7 +10,7 @@ export const router = createBrowserRouter([
         element: LazyLoadRoutes("Home"),
       },
       {
-        path: "/about-us",
+        path: "/team",
         element: LazyLoadRoutes("About"),
       },
       {
@@ -29,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path: "/contact",
         element: LazyLoadRoutes("Contact"),
+      },
+      {
+        path: "/about-us",
+        element: LazyLoadRoutes("AboutUs"),
       },
       {
         path: "*",

@@ -4,13 +4,17 @@ import { motion } from "framer-motion";
 import { fadeTitle, heroImage } from "../utils/motion";
 import { Tilt } from "react-tilt";
 import { defaultOptions } from "../settings";
+import { AboutUs } from "../sections";
 const Home = () => {
   useEffect(() => {
     document.title = "Asosiy";
   }, []);
   return (
     <>
-      <section id="home" className="home bg-gray-100 center dark:bg-dark">
+      <section
+        id="home"
+        className="home bg-gray-100 center dark:bg-dark min-h-[700px]"
+      >
         <div className="container mx-auto flex flex-wrap lg:justify-between justify-center items-center">
           <h1 className="title">
             <motion.span
@@ -35,10 +39,7 @@ const Home = () => {
           </Tilt>
         </div>
       </section>
-  
-      {/* Working */}
-      {/* <LatestNews /> */}
-      {/* <Team /> */}
+      <AboutUs />
     </>
   );
 };

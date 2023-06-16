@@ -10,7 +10,7 @@ const NavItem = ({ nav, index }: { nav: INavigation; index: number }) => {
     <motion.li
       onClick={() => dispatch(toggleHideMobileNav())}
       variants={fadeNav(index * 0.2, 1)}
-      className="capitalize  hover:text-main dark:text-main dark:hover:text-white transition duration-300 font-normal"
+      className="capitalize  hover:text-main dark:text-white dark:hover:text-main transition duration-300 font-normal"
       initial="start"
       animate="finished"
       key={nav.id}

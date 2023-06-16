@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { svgVariants } from "../utils/motion";
 import { Link } from "react-router-dom";
-const Logo = () => {
+const Logo = ({ className }: { className: string }) => {
   return (
-    <Link to="/" className="outline-none">
+    <Link to="/" className={`outline-none ${className}`}>
       <svg
         className="text-[#93CE03] lg:w-36 w-28"
         version="1.1"

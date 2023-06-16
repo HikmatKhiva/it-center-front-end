@@ -2,20 +2,23 @@ import { motion } from "framer-motion";
 import { Tilt } from "react-tilt";
 import { defaultOptions } from "../settings";
 import { fadeCardAnimate } from "../utils/motion";
-import { ITeam } from "../types/types";
+import { ISocial, ITeam } from "../types/types";
 import Social from "./Social";
+import { urlFor } from "../server/client";
 const Teacher = ({ index, teacher }: { index: number, teacher: ITeam }) => {
   return (
     <motion.div whileInView={fadeCardAnimate(index * .5, 1)} className="dark:text-white team py-5 shadow-card-light dark:shadow-card-dark bg-white w-[350px] rounded-md overflow-hidden dark:bg-light-dark">
       <Tilt options={defaultOptions}>
         <div className="flex flex-col items-center">
-          {<teacher.img size={50} />}
+          <img className="w-32 rounded-full"
+            src={urlFor(teacher.image).url()}
+            alt={teacher.name} />
           <div className="py-3 px-4 flex flex-col">
-            <h4 className="text-2xl text-center text-main">{teacher.profession}</h4>
+            <h4 className="text-2xl text-center text-main">{teacher?.occupation}</h4>
             <div className="text-center">
-              <h5>{teacher.name}</h5>
-              <div className="flex justify-center   pt-2 gap-3">
-                {teacher?.social.map((social, index) => <Social key={index} social={social} index={index} />)}
+              <h5 className="font-medium">{teacher.name}</h5>
+              <div className="flex justify-center pt-2 gap-3">
+                {teacher?.stacks.map((social:ISocial, index:number) => <Social key={index} social={social} index={index} />)}
               </div>
             </div>
           </div>

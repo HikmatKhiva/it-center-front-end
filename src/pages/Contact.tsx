@@ -1,6 +1,6 @@
 import { BsFillPersonPlusFill, BsEnvelope } from "react-icons/bs";
 import { useState } from "react";
-import { Application, Complaint,Map } from "../components";
+import { Application, Complaint, Map } from "../sections";
 const Contact = () => {
   const [tab, setTab] = useState("application");
   return (
@@ -12,10 +12,10 @@ const Contact = () => {
       </div>
       <div className="container mx-auto">
         <div className="flex justify-center gap-5 dark:text-main">
-          <button onClick={() => setTab("application")} className="text-4xl ">
+          <button onClick={() => setTab("application")} className="text-4xl outline-none">
             <BsFillPersonPlusFill />
           </button>
-          <button onClick={() => setTab("complaint")} className="text-4xl ">
+          <button onClick={() => setTab("complaint")} className="text-4xl outline-none">
             <BsEnvelope />
           </button>
         </div>
@@ -25,4 +25,5 @@ const Contact = () => {
     </section>
   );
 };
+
 export default Contact;
