@@ -1,14 +1,14 @@
-import { useEffect } from "react"
-import { useAppDispatch, useAppSelector } from "./app"
+import { toast } from "react-toastify";
 import { setClientInfo } from "../redux/reducer/setting";
-import { toast } from "react-toastify"
 import { I_IP } from "../types/types";
-const useGetApi = ():void => {
-  const { clientAgree } = useAppSelector(state => state.setting);
-  const dispatch = useAppDispatch()
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "./app";
+const useGetApi = (): void => {
+  const { clientAgree } = useAppSelector((state) => state.setting);
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    let isMount = true;
-    const getClientApi = async (): Promise<void> => {
+    let isMounted = true;
+    const getClientApi = async () => {
       try {
         const data = await fetch("https://ipapi.co/json");
         const json: I_IP = await data.json();
@@ -17,12 +17,12 @@ const useGetApi = ():void => {
         toast.error("Something went wrong ", err.message);
       }
     };
-    if (clientAgree) {
+    if (isMounted && clientAgree) {
       getClientApi();
     }
     return () => {
-      isMount = false;
+      isMounted = false;
     };
   }, [clientAgree, dispatch]);
-}
+};
 export default useGetApi;

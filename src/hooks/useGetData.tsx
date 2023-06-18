@@ -20,7 +20,9 @@ const useGetData = (query: string) => {
         setLoading(false);
       }
     };
-    fetchData();
+    if (isMounted) {
+      fetchData();
+    }
     return () => {
       isMounted = false;
     };

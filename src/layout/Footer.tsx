@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="container mx-auto flex flex-wrap justify-between items-center">
         <div className="flex flex-wrap w-full sm:w-fit">
           <div className="w-full sm:w-fit">
-            <Logo />
+            <Logo className="" />
           </div>
           <nav className="flex-grow my-3 lg:my-0 sm:ml-10">
             <motion.ul

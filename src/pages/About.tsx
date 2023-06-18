@@ -10,11 +10,9 @@ const About = () => {
     document.title = "Biz Jamoa";
   }, []);
   const { data, error, loading } = useGetData(mentorQ);
-  console.log(data);
-
   return (
     <section id="about" className="dark:bg-dark bg-gray-100 flex flex-col">
-      <div className="title py-5 dark:text-main flex items-center flex-col">
+      <div className="title py-5 dark:text-white flex items-center flex-col">
         <h2 className="text-3xl capitalize">Bizning Jamoa</h2>
       </div>
       <motion.div className="container mx-auto gap-5 flex flex-col flex-grow">
