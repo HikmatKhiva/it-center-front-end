@@ -18,6 +18,8 @@
     "@reduxjs/toolkit": "^1.9.5",
     "@sanity/client": "^6.1.2",
     "@sanity/image-url": "^1.0.2",
+    "@tanstack/react-query": "^4.29.14",
+    "@tanstack/react-query-devtools": "^4.29.14",
     "framer-motion": "^10.12.16",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -1,14 +1,12 @@
-import { useEffect } from "react";
 import { heroImg } from "../assets";
 import { motion } from "framer-motion";
 import { fadeTitle, heroImage } from "../utils/motion";
 import { Tilt } from "react-tilt";
 import { defaultOptions } from "../settings";
 import { AboutUs } from "../sections";
+import { TabTitle } from "../utils/TabTitle";
 const Home = () => {
-  useEffect(() => {
-    document.title = "Asosiy";
-  }, []);
+  TabTitle('Asosiy')
   return (
     <>
       <section

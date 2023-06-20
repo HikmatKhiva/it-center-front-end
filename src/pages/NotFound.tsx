@@ -1,8 +1,6 @@
-import { useEffect } from "react";
+import { TabTitle } from "../utils/TabTitle";
 const NotFound = () => {
-  useEffect(() => {
-    document.title = "Biz-Haqimizda";
-  }, []);
+  TabTitle('Biz-Haqimizda')
   return (
     <section className=" not-found bg-notFound grid place-items-center">
       <div className="text-center text-white dark:text-main">

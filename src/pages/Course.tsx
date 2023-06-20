@@ -1,14 +1,12 @@
-import { useEffect } from "react";
-import useGetData from "../hooks/useGetData";
 import { courseQ } from "../server/query";
 import { EmptyPage, Error, FetchLoading } from "../loadings";
 import CourseCard from "../components/CourseCard";
 import { ICourse } from "../types/types";
+import { TabTitle } from "../utils/TabTitle";
+import { useQueryData } from "../hooks/useQueryData";
 const Course = () => {
-  useEffect(() => {
-    document.title = "Kurslar";
-  }, []);
-  const { data, loading, error } = useGetData(courseQ);
+  TabTitle("Kurslar");
+  const { data, error, isLoading: loading } = useQueryData(courseQ)
   return (
     <section id="course" className="dark:bg-dark bg-gray-100 flex flex-col">
       <div className="title py-5 dark:text-white flex items-center flex-col">

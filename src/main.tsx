@@ -9,10 +9,16 @@ import { router } from "./router/Route.tsx";
 import { Provider } from "react-redux";
 import { store } from "./redux/store/app.ts";
 import PageLoading from "./loadings/PageLoading.tsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} fallbackElement={<PageLoading />} />
-    </Provider>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <RouterProvider router={router} fallbackElement={<PageLoading />} />
+      </Provider>
+      <ReactQueryDevtools initialIsOpen={true} />
+    </QueryClientProvider>
   </React.StrictMode>
 );

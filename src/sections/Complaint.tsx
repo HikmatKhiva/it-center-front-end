@@ -2,7 +2,9 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { client } from "../server/client";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import { TabTitle } from "../utils/TabTitle";
 const Complaint = () => {
+  TabTitle("Shikoyat bo'limi")
   const [complaint, setComplaint] = useState({
     course: "front-end",
     text: "",

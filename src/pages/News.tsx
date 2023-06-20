@@ -1,9 +1,7 @@
-import { useEffect } from "react";
 import Remount from "../loadings/Remount";
+import { TabTitle } from "../utils/TabTitle";
 const News = () => {
-  useEffect(() => {
-    document.title = "Yangiliklar";
-  }, []);
+  TabTitle('Yangiliklar')
   return (
     <section id="news" className="dark:bg-dark flex flex-col bg-gray-100">
       <div className="title py-5 flex dark:text-white items-center flex-col">

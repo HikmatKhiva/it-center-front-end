@@ -2,7 +2,9 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import { client } from "../server/client";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import { TabTitle } from "../utils/TabTitle";
 const Application = () => {
+  TabTitle('Kursga Yozilish')
   const [newStudent, setNewStudent] = useState({
     name: "",
     phone: "90",

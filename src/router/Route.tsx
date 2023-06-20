@@ -8,6 +8,7 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: LazyLoadRoutes("Home"),
+      
       },
       {
         path: "/team",
