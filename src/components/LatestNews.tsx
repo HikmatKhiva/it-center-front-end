@@ -6,7 +6,7 @@ import { news } from "../server/query";
 import { INews } from "../types/types";
 import { useQueryData } from "../hooks/useQueryData";
 const LatestNews = () => {
-  const { data } = useQueryData(news);
+  const { data } = useQueryData(news,'');
   return (
     <section className="latest-news bg-gray-100 py-10 dark:bg-dark">
       <div className="title flex flex-col items-center">
