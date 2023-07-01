@@ -6,8 +6,8 @@ export default {
     extend: {
       colors: {
         "main": "#7dba28",
-        "dark": "#03001C",
-        "light-dark": "#03002C"
+        "dark": "#03001c",
+        "light-dark": "#111827"
       },
       backgroundImage: {
         "notFound": "url('./src/assets/bg-notFound.jpg')"

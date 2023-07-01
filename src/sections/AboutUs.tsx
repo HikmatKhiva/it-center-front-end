@@ -3,6 +3,7 @@ import { Logo } from "../animationElement";
 import { itCenter } from "../assets";
 import { Link } from "react-router-dom";
 import { logo } from "../settings";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 const AboutUs = () => {
   return (
     <section id="about-us" className="py-5 bg-gray-100  dark:bg-dark">
@@ -10,12 +11,12 @@ const AboutUs = () => {
         <div className="title py-5 dark:text-white flex items-center flex-col">
           <h2 className="text-3xl capitalize">Biz haqimizda</h2>
         </div>
-        <div className="flex py-2 justify-between gap-40">
-          <div className="w-1/2 flex-grow">
+        <div className="flex py-2 lg:justify-between justify-center flex-wrap lg:gap-20 items-center gap-10">
+          <div className="xl:w-[40%] md:w-[30%] flex-grow">
             <Tilt options={logo}>
               <Logo className="float-left mr-2" />
             </Tilt>
-            <p className="tracking-wide text-xl dark:text-white">
+            <p className="tracking-wide text-sm lg:text-xl dark:text-white">
               Prezidentimizning 5 ta tashabbusining uchinchi tashabbusini
               amalaga oshirish maqsadida "Aholi va yoshlar tomonidan kompyuter
               texnologiyalari va Internetdan samarali foydalanishni tashkil
@@ -29,11 +30,14 @@ const AboutUs = () => {
               batafsil o'qish
             </Link>
           </div>
-          <img
-            className="w-[500px] rounded-tr-full h-[350px] rounded-bl-full"
-            src={itCenter}
-            alt="it-center"
-          />
+          <Tilt op>
+            <LazyLoadImage
+              effect="blur"
+              className="xl:w-[500px] md:w-[400px] w-full object-cover lg:rounded-tr-full rounded-xl  max-h-[350px] rounded-br-2xl lg:rounded-br-none lg:rounded-bl-full"
+              src={itCenter}
+              alt="it-center"
+            />
+          </Tilt>
         </div>
       </div>
     </section>

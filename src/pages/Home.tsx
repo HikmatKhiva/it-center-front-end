@@ -5,6 +5,7 @@ import { Tilt } from "react-tilt";
 import { defaultOptions } from "../settings";
 import { AboutUs } from "../sections";
 import { TabTitle } from "../utils/TabTitle";
+import { LazyLoadImage } from "react-lazy-load-image-component"
 const Home = () => {
   TabTitle('Asosiy')
   return (
@@ -26,14 +27,18 @@ const Home = () => {
             </motion.span>
           </h1>
           <Tilt options={defaultOptions}>
-            <motion.img
+            <motion.div
               variants={heroImage}
               initial="initial"
               animate="finished"
-              className="hero-img"
-              src={heroImg}
-              alt="programming"
-            />
+            >
+              <LazyLoadImage
+                className="hero-img object-contain"
+                effect="blur"
+                src={heroImg}
+                alt="programming"
+              />
+            </motion.div>
           </Tilt>
         </div>
       </section>

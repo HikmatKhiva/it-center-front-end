@@ -67,7 +67,7 @@ export const heroImage = {
     finished: {
         scale: 1,
         transition: {
-            duration: 1,
+            duration: 2,
             type: "spring",
         },
     },

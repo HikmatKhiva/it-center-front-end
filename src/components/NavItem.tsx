@@ -1,5 +1,5 @@
 import { INavigation } from "../types/types";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import { fadeNav } from "../utils/motion";
 import { useAppDispatch } from "../hooks/app";
@@ -15,7 +15,7 @@ const NavItem = ({ nav, index }: { nav: INavigation; index: number }) => {
       animate="finished"
       key={nav.id}
     >
-      <Link className="text-base lg:text-lg" to={`${nav.url}`}>{nav.title}</Link>
+      <NavLink className="text-base nav-link font-normal  lg:text-lg" to={`${nav.url}`}>{nav.title}</NavLink>
     </motion.li>
   );
 };

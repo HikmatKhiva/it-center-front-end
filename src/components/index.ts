@@ -3,3 +3,4 @@ export { default as Social } from "./Social";
 export { default as Location } from "./Location";
 export { default as MobileNav } from "./mobile/MobileNav";
 export { default as MenuToggle } from "./mobile/MenuToggle";
+export { default as NewsCard } from "./NewsCard";

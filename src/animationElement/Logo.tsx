@@ -3,9 +3,12 @@ import { svgVariants } from "../utils/motion";
 import { Link } from "react-router-dom";
 const Logo = ({ className }: { className: string }) => {
   return (
-    <Link to="/" className={`outline-none ${className}`}>
+    <Link to="/"
+      role="link"
+      className={`outline-none ${className}`}
+      aria-label="log-link">
       <svg
-        className="text-[#93CE03] lg:w-36 w-28"
+        className="text-main lg:w-36 w-28"
         version="1.1"
         id="Слой_1"
         xmlns="http://www.w3.org/2000/svg"

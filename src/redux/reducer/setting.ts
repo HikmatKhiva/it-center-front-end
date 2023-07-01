@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store/app";
 import { I_IP } from "../../types/types";
 const initialState = {
-  themeMode: "light",
+  themeMode: localStorage.getItem('theme') || "light",
   isLight: false,
   isOpen: false,
   clientAgree: false,

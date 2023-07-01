@@ -9,6 +9,8 @@ const Social = ({ social, index }: { social: ISocial; index: number }) => {
       href={social.url}
       rel="noopener noreferrer"
       target="_blank"
+      role="link"
+      aria-label={social?.name || "footer link"}
       className={`text-gray-500 text-2xl cursor-pointer hover:scale-110  hover:text-[${social.color}]`}
     >
       {social.icon && <social.icon />}

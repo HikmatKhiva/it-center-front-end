@@ -5,7 +5,7 @@ import { handleChangeThemeMode } from "../redux/reducer/setting";
 import { motion } from "framer-motion";
 const ThemeIcon = () => {
     const { isLight, themeMode } = useAppSelector(state => state.setting);
-    
+
     const dispatch = useAppDispatch();
     const colorTheme = isLight ? "light" : "dark";
     useEffect(() => {
@@ -16,7 +16,9 @@ const ThemeIcon = () => {
     }, [colorTheme, themeMode]);
     return (
         <motion.button
-            whileTap={{ scale: [1, .3],rotateZ:[0,90] }}
+            aria-label="theme-control"
+            type="button"
+            whileTap={{ scale: [1, .3], rotateZ: [0, 90] }}
             onClick={() => dispatch(handleChangeThemeMode())}
             className="dark:text-white text-black text-xl outline-none">
             {isLight ? <BsFillSunFill /> : <BsFillMoonFill />}
