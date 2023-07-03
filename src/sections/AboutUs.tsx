@@ -6,7 +6,7 @@ import { logo } from "../settings";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 const AboutUs = () => {
   return (
-    <section id="about-us" className="py-5 bg-gray-100  dark:bg-dark">
+    <section id="about-us" className="py-5 bg-gray-100 overflow-x-hiddenT dark:bg-dark">
       <div className="container mx-auto">
         <div className="title py-5 dark:text-white flex items-center flex-col">
           <h2 className="text-3xl capitalize">Biz haqimizda</h2>

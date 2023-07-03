@@ -2,6 +2,7 @@ import { ISocial } from "../types/types";
 import { motion } from "framer-motion";
 import { socialAnimate } from "../utils/motion";
 import { urlFor } from "../server/client";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 const Social = ({ social, index }: { social: ISocial; index: number }) => {
   return (
     <motion.a
@@ -14,7 +15,7 @@ const Social = ({ social, index }: { social: ISocial; index: number }) => {
       className={`text-gray-500 text-2xl cursor-pointer hover:scale-110  hover:text-[${social.color}]`}
     >
       {social.icon && <social.icon />}
-      {social.image && <img className="w-5" src={urlFor(social.image).url()} alt={social.name} />}
+      {social.image && <LazyLoadImage className="w-5 mix-blend-multiply bg-transparent hover:mix-blend-multiply" src={urlFor(social.image).url()} alt={social.name} />}
     </motion.a>
   );
 };

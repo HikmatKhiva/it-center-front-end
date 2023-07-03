@@ -12,7 +12,7 @@ const Teacher = ({ index, teacher }: { index: number, teacher: ITeam }) => {
       <Tilt options={defaultOptions}>
         <div className="flex flex-col items-center">
           <LazyLoadImage
-            className="w-32 rounded-full"
+            className="w-32 rounded-full bg-transparent "
             effect="blur"
             src={urlFor(teacher.image).url()}
             alt={teacher.name} />
