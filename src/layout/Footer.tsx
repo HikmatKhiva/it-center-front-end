@@ -5,11 +5,22 @@ import { motion } from "framer-motion";
 import { NavItem, Social } from "../components";
 const Footer = () => {
   return (
-    <footer className="py-5 border-t-2 dark:bg-dark dark:border-main">
+    <footer className="py-5 px-5 border-t-2 dark:bg-dark dark:border-main">
       <div className="container mx-auto flex flex-wrap justify-between items-center">
         <div className="flex flex-wrap w-full sm:w-fit">
           <div className="w-full sm:w-fit">
             <Logo className="" />
+            <div className="mt-2 flex gap-2">
+              <p>design by </p>
+              <a
+                className="text-main hover:scale-110 transition-all duration-300 font-medium"
+                href="https://hikmatbek.uz"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Hikmat
+              </a>
+            </div>
           </div>
           <nav className="flex-grow my-3 lg:my-0 sm:ml-10">
             <motion.ul

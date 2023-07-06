@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { TabTitle } from "../utils/TabTitle";
 import { useLocation } from "react-router-dom";
 const Application = () => {
-  TabTitle('Kursga Yozilish')
+  TabTitle("Kursga Yozilish");
   const { state } = useLocation();
   const [newStudent, setNewStudent] = useState({
     name: "",
@@ -24,8 +24,9 @@ const Application = () => {
   const handleClick = async (e: FormEvent) => {
     e.preventDefault();
     if (!newStudent.name) return toast.error("Iltimos ismingizni kiriting ");
-    if (newStudent.phone.length === 11)
+    if (!newStudent.phone.match(/^9\d{*}$/) && newStudent.phone.length !== 9) {
       return toast.error("Iltimos telefon raqamingni tekshirib ko'ring ");
+    }
     if (!newStudent.course) return toast.error("Iltimos kursni tanlang ");
     try {
       setLoading(true);
@@ -48,7 +49,8 @@ const Application = () => {
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: -10, opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="lg:w-[700px] w-full mx-auto my-5 dark:bg-light-dark bg-white py-10 rounded-md">
+      className="lg:w-[700px] w-full mx-auto my-5 dark:bg-light-dark bg-white py-10 rounded-md"
+    >
       <div className="lg:px-20 px-5">
         <input
           type="text"
@@ -74,11 +76,17 @@ const Application = () => {
             value={newStudent.phone}
             autoComplete="off"
             onChange={handleChange}
+            maxLength={9}
+            minLength={9}
             name="phone"
             className="w-full border pl-12 p-2 mb-3 rounded-md focus:border-main outline-none"
           />
         </div>
-        <select onClick={handleChange} name="course" className="border w-full p-2 rounded-md outline-none focus:border-main">
+        <select
+          onClick={handleChange}
+          name="course"
+          className="border w-full p-2 rounded-md outline-none focus:border-main"
+        >
           <option value="front-end">Front End</option>
           <option value="kompyuter savodxonligi">Kompyuter Savodxonligi</option>
           <option value="english">IT English</option>

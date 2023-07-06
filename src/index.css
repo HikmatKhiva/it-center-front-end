@@ -20,6 +20,9 @@
     flex-grow: 1;
     min-height: 400px;
   }
+  .PhoneInput input {
+    outline: none;
+  }
   section {
     flex-grow: 1;
   }

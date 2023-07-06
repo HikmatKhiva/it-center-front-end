@@ -6,7 +6,7 @@ import ThemeIcon from "../components/ThemeIcon";
 import { MenuToggle, MobileNav, NavItem } from "../components";
 const Navbar = () => {
   return (
-    <header className="h-[70px] items-center flex border-b-2 sticky top-0 bg-white z-20 dark:bg-dark dark:border-main  ">
+    <header className="h-[70px] px-5 items-center flex border-b-2 sticky top-0 bg-white z-20 dark:bg-dark dark:border-main  ">
       <motion.nav className="container mx-auto flex justify-between items-center ">
         <Logo className="" />
         <div className="flex items-center lg:gap-4 gap-2">
