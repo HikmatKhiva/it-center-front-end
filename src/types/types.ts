@@ -113,3 +113,8 @@ export interface IAboutCard {
   image: any
   graduates:number
 }
+
+export interface ClientState {
+  alertUser: boolean;
+  userInfo: I_IP;
+}
