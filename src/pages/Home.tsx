@@ -6,6 +6,7 @@ import { defaultOptions } from "../settings";
 import { AboutUs } from "../sections";
 import { TabTitle } from "../utils/TabTitle";
 import { LazyLoadImage } from "react-lazy-load-image-component"
+import { Hero } from "../animationElement";
 const Home = () => {
   TabTitle('Asosiy')
   return (
@@ -14,8 +15,8 @@ const Home = () => {
         id="home"
         className="home bg-gray-100 center dark:bg-dark min-h-[700px]"
       >
-        <div className="container mx-auto flex flex-wrap lg:justify-between justify-center items-center">
-          <h1 className="title">
+        <div className="container mx-auto overflow-x-hidden flex flex-wrap lg:justify-between justify-center items-center">
+          <h1 className="title ">
             <motion.span
               variants={fadeTitle("left", 1, 2)}
               initial="hidden"
@@ -26,7 +27,7 @@ const Home = () => {
               karyerangizni <br /> shu yerdan boshlang!
             </motion.span>
           </h1>
-          <Tilt options={defaultOptions}>
+          <Tilt className="lg:hidden" options={defaultOptions}>
             <motion.div
               variants={heroImage}
               initial="initial"
@@ -40,6 +41,7 @@ const Home = () => {
               />
             </motion.div>
           </Tilt>
+          <Hero />
         </div>
       </section>
       <AboutUs />

@@ -1,10 +1,10 @@
-export interface INavigation { /* Nav */
+export type INavigation =  { /* Nav */
   id: number;
   title: string;
   url: string;
 }
 
-export interface ISocial { /* social */
+export type ISocial = { /* social */
   id?: number;
   name?: string;
   url?: string;
@@ -12,12 +12,12 @@ export interface ISocial { /* social */
   color?: string;
   image?: any
 }
-export interface ITeamSocial { /* */
+export type ITeamSocial = { /* */
   name: string;
   url: string;
   icon: string;
 }
-export interface ITeam {
+export type ITeam =  {
   _id: string;
   name: string;
   experience: string;
@@ -26,19 +26,19 @@ export interface ITeam {
   social: ISocial[];
   stacks: ISocial[]
 }
-export interface IFooterContact {
+export type IFooterContact = {
   id: number
   title: string
   url: string
   content: string
 }
 
-export interface IMentorStack {
+export type IMentorStack = {
   url: string,
   image: any
 }
 
-interface IStack {
+type IStack = {
   name?: string;
   icon?: any;
   _key?: string
@@ -46,12 +46,12 @@ interface IStack {
   asset?: object
 }
 
-interface ISlug {
+type ISlug = {
   current: string;
   _type: string;
 }
 
-export interface INews {
+export type INews = {
   title: string;
   slug: ISlug;
   descr: string;
@@ -64,7 +64,7 @@ export interface INews {
   _id?: string;
   _type?: string;
 }
-export interface ICourse {
+export type ICourse = {
   mentor?: string
   name?: string
   stack?: IStack[]
@@ -77,7 +77,7 @@ export interface ICourse {
   url?: string
 }
 
-export interface I_IP {
+export type I_IP = {
   asn?: string
   city?: string
   continent_code?: string
@@ -107,14 +107,19 @@ export interface I_IP {
   version?: string
 }
 
-export interface IAboutCard {
+export type IAboutCard = {
   id: number
   title: string
   image: any
   graduates:number
 }
 
-export interface ClientState {
+export type ClientState = {
   alertUser: boolean;
   userInfo: I_IP;
 }
+
+export type IComplaint = {
+  course: string;
+  text: string;
+};

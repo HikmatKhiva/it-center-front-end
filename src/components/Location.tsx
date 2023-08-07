@@ -10,7 +10,7 @@ const Location = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     setTimeout(() => dispatch(hideAlert()), 7000);
-  }, [alertUser]);
+  }, [alertUser,dispatch]);
   const handleClose = () => dispatch(hideAlert());
   const handleClear = () => {
     dispatch(clearUserInfo());

@@ -26,6 +26,17 @@
   section {
     flex-grow: 1;
   }
+  .hero-animate {
+    width: 40% !important;
+    flex-grow: 1;
+    background-color: transparent !important;
+  }
+  .hero-animate canvas{
+    background-color: transparent !important;
+    /* width: 600px !important; */
+    height: 700px !important;
+  }
+
   .center {
     @apply grid place-items-center;
   }

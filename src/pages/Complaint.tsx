@@ -3,9 +3,10 @@ import { client } from "../server/client";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { TabTitle } from "../utils/TabTitle";
+import { IComplaint } from "../types/types";
 const Complaint = () => {
-  TabTitle("Shikoyat bo'limi")
-  const [complaint, setComplaint] = useState({
+  TabTitle("Shikoyat bo'limi");
+  const [complaint, setComplaint] = useState<IComplaint>({
     course: "front-end",
     text: "",
   });
@@ -38,13 +39,13 @@ const Complaint = () => {
   ) => setComplaint((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   return (
     <>
-
       <motion.form
         initial={{ y: 10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: -10, opacity: 0 }}
         transition={{ duration: 0.2 }}
-        className="lg:w-[700px] mx-auto my-5 dark:bg-light-dark bg-white py-5 rounded-md">
+        className="lg:w-[700px] mx-auto my-5 dark:bg-light-dark bg-white py-5 rounded-md"
+      >
         <div className="lg:px-20 px-5">
           <div className="mb-2">
             <label
