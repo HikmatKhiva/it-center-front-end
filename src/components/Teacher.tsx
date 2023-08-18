@@ -17,12 +17,12 @@ const Teacher = ({ index, teacher }: { index: number; teacher: ITeam }) => {
           <LazyLoadImage
             className="w-32 rounded-full bg-transparent "
             effect="blur"
-            src={urlFor(teacher.image).url()}
+            src={teacher.image ? urlFor(teacher.image).url() : ""}
             alt={teacher.name}
           />
           <div className="py-3 px-4 flex flex-col">
             <h4 className="text-2xl text-center text-main">
-              {teacher?.occupation}
+              {teacher?.occupation ? teacher?.occupation:"Kompyuter mutaxassisi"}
             </h4>
             <div className="text-center">
               <h5 className="font-medium">{teacher.name}</h5>
