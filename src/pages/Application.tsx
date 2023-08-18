@@ -13,9 +13,7 @@ const Application = () => {
     course: state?.course || "english",
   });
   const [loading, setLoading] = useState(false);
-  const [selectedCourse, setSelectedCourse] = useState(
-    state?.course || "front-end"
-  );
+
   const sanity_newStudent = {
     _type: "application",
     name: newStudent.name,
@@ -86,7 +84,7 @@ const Application = () => {
           />
         </div>
         <select
-          defaultValue={selectedCourse}
+          defaultValue={state?.course || "front-end"}
           onClick={handleChange}
           name="course"
           className="border w-full p-2 rounded-md outline-none focus:border-main"
