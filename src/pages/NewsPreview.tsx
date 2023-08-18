@@ -9,9 +9,9 @@ import { INews } from "../types/types";
 const NewsPreview = () => {
   const params = useParams();
   const { data, isLoading } = useQueryData(newsQuery, params);
-  const news: INews[] | any = Array.isArray(data) && data
-  if (isLoading) return <PageLoading />
-  if (!data.length) return <NotFound />
+  const news: INews[] | any = Array.isArray(data) && data;
+  if (isLoading) return <PageLoading />;
+  if (!data.length) return <NotFound />;
   return (
     <section className="py-5 dark:bg-dark dark:text-white">
       <div className="shadow-lg container dark:bg-light-dark md:w-[80%] px-6 py-3 w-full mx-auto rounded">
@@ -19,10 +19,12 @@ const NewsPreview = () => {
           {news[0]?.title || ""}
         </h2>
         <PortableText
-          value={news[0].desc}
+          value={news.length ? news[0]?.desc : []}
           components={PortableTextComponents}
         />
-        <p className="text-end font-medium">{news[0].date}</p>
+        <p className="text-end font-medium">
+          {news?.length ? news[0].date : ""}
+        </p>
       </div>
     </section>
   );

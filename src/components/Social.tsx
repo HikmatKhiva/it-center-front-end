@@ -15,7 +15,7 @@ const Social = ({ social, index }: { social: ISocial; index: number }) => {
       className={`text-gray-500 text-2xl cursor-pointer hover:scale-110  hover:text-[${social.color}]`}
     >
       {social.icon && <social.icon />}
-      {social.image && <LazyLoadImage className="w-5 mix-blend-multiply bg-transparent hover:mix-blend-multiply" src={urlFor(social.image).url()} alt={social.name} />}
+      {social.image && <LazyLoadImage className="w-5 rounded-full hover:scale-150 transition-all duration-300 " src={urlFor(social.image).url()} alt={social.name} />}
     </motion.a>
   );
 };

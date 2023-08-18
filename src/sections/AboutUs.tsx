@@ -18,7 +18,7 @@ const AboutUs = () => {
             </Tilt>
             <p className="tracking-wide text-sm lg:text-xl dark:text-white">
               Prezidentimizning 5 ta tashabbusining uchinchi tashabbusini
-              amalaga oshirish maqsadida "Aholi va yoshlar tomonidan kompyuter
+              amalga oshirish maqsadida "Aholi va yoshlar tomonidan kompyuter
               texnologiyalari va Internetdan samarali foydalanishni tashkil
               etish" asosida tashkil qilingan!
             </p>

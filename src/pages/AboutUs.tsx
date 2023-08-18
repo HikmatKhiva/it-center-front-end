@@ -11,7 +11,7 @@ const AboutUs = () => {
             <LazyLoadImage effect="blur" className="w-96" src={logo} alt="logo" />
           </Tilt>
         </div>
-        <p className="text-xl text-center my-5 dark:text-white">IT Center "Axbarot texnologiyalari markazi" IT Park O'zbekiston hamkorligida yaratilgan.
+        <p className="text-xl text-center my-5 dark:text-white">IT Center "Axborot texnologiyalari markazi" IT Park O'zbekiston hamkorligida yaratilgan.
           Bizning IT markazimizda 6 dan ortiq IT kurslari bo'lib hozirda yanada kurslarni va mentorlarni ko'paytirish rejalashtirilmoqda. O'quv markazimiz 2020-yil sentyabr oyida o'z faoliyatini boshlagan.
           Hozirda bizda Front End dasturlash, Back End dasturlash, Grafik dizayn, UI/UX dizayn va Web dizayn kurslari tashkil qilingan.</p>
       </div>
