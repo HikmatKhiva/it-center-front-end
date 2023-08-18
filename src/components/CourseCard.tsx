@@ -22,19 +22,19 @@ const CourseCard = ({
       <Tilt options={defaultOptions}>
         <Link to="/contact" state={{ course: item.url }}>
           <div className="flex flex-col items-center">
-            <h3 className="text-2xl my-5 truncate">{item.name}</h3>
+            <h3 className="text-2xl xl:text-3xl text-center w-full my-5 truncate">{item.name}</h3>
             <span className="flex gap-2 text-2xl">
               {item?.stack?.map((s, index) => (
                 <LazyLoadImage
                   effect="blur"
-                  className="w-10 rounded-full object-cover hover:scale-110 transition-all duration-300 cursor-pointer"
+                  className="w-10 object-cover hover:scale-110 transition-all duration-300 cursor-pointer"
                   key={index}
                   src={urlFor(s).url()}
                   alt={s?._type}
                 />
               ))}
             </span>
-            <span className="text-xl my-2 ">
+            <span className="text-xl my-2 w-full text-center truncate">
               {" "}
               O'qituvchi:
               <span className="text-main text-2xl font-medium">

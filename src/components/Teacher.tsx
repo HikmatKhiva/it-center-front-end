@@ -21,7 +21,7 @@ const Teacher = ({ index, teacher }: { index: number; teacher: ITeam }) => {
             alt={teacher.name}
           />
           <div className="py-3 px-4 flex flex-col">
-            <h4 className="text-2xl text-center text-main">
+            <h4 className="text-2xl text-center text-main w-full truncate">
               {teacher?.occupation ? teacher?.occupation:"Kompyuter mutaxassisi"}
             </h4>
             <div className="text-center">
