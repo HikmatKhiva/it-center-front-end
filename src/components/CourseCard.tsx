@@ -22,7 +22,7 @@ const CourseCard = ({
       <Tilt options={defaultOptions}>
         <Link to="/contact" state={{ course: item.url }}>
           <div className="flex flex-col items-center">
-            <h3 className="text-2xl my-5">{item.name}</h3>
+            <h3 className="text-2xl my-5 truncate">{item.name}</h3>
             <span className="flex gap-2 text-2xl">
               {item?.stack?.map((s, index) => (
                 <LazyLoadImage
