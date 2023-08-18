@@ -10,7 +10,7 @@ const Teacher = ({ index, teacher }: { index: number; teacher: ITeam }) => {
   return (
     <motion.div
       whileInView={fadeCardAnimate(index * 0.5, 1)}
-      className="dark:text-white team py-5 shadow-card-light dark:shadow-card-dark bg-white w-[350px] rounded-md overflow-hidden dark:bg-light-dark"
+      className="dark:text-white team py-5 shadow-card-light dark:shadow-card-dark bg-white w-[350px] rounded-md overflow-hidden dark:bg-light-dark min-h-[280px] max-h-[320px]"
     >
       <Tilt options={defaultOptions}>
         <div className="flex flex-col items-center">
