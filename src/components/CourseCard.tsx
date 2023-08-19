@@ -20,7 +20,7 @@ const CourseCard = ({
       className="dark:text-white p-5 h-[280px] shadow-card-light dark:shadow-card-dark bg-white w-[350px] rounded-md overflow-hidden dark:bg-light-dark"
     >
       <Tilt options={defaultOptions}>
-        <Link to="/contact" state={{ course: item.url }}>
+        <Link to="/contact" state={{ course: item?.contact }}>
           <div className="flex flex-col items-center">
             <h3 className="text-2xl xl:text-3xl text-center w-full my-5 truncate">{item.name}</h3>
             <span className="flex gap-2 text-2xl">

@@ -13,7 +13,6 @@ const Application = () => {
     course: state?.course || "english",
   });
   const [loading, setLoading] = useState(false);
-
   const sanity_newStudent = {
     _type: "application",
     name: newStudent.name,
@@ -90,7 +89,7 @@ const Application = () => {
           className="border w-full p-2 rounded-md outline-none focus:border-main"
         >
           <option value="front-end">Front End</option>
-          <option value="kompyuter savodxonligi">Kompyuter Savodxonligi</option>
+          <option value="kompyuter Savodxonligi">Kompyuter Savodxonligi</option>
           <option value="english">IT English</option>
         </select>
         <button

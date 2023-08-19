@@ -1,4 +1,4 @@
-export type INavigation =  { /* Nav */
+export type INavigation = { /* Nav */
   id: number;
   title: string;
   url: string;
@@ -17,7 +17,7 @@ export type ITeamSocial = { /* */
   url: string;
   icon: string;
 }
-export type ITeam =  {
+export type ITeam = {
   _id: string;
   name: string;
   experience: string;
@@ -75,6 +75,7 @@ export type ICourse = {
   _updatedAt?: string
   duration?: string
   url?: string
+  contact?: string
 }
 
 export type I_IP = {
@@ -111,7 +112,7 @@ export type IAboutCard = {
   id: number
   title: string
   image: any
-  graduates:number
+  graduates: number
 }
 
 export type ClientState = {
