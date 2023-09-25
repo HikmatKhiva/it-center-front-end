@@ -13,8 +13,8 @@ const About = () => {
       <div className="title py-5 dark:text-white flex items-center flex-col">
         <h2 className="text-3xl capitalize">Bizning Jamoa</h2>
       </div>
-      <motion.div className="container mx-auto">
-        <div className="flex justify-center flex-grow items-center gap-5">
+      <motion.div className="container mx-auto flex flex-col flex-grow pb-3">
+        <div className="flex justify-center flex-grow items-center gap-5 flex-wrap">
           {isLoading ? (
             <FetchLoading />
           ) : Array.isArray(data) && data.length ? (

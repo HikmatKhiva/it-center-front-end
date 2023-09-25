@@ -12,7 +12,7 @@ const Course = () => {
       <div className="title py-5 dark:text-white flex items-center flex-col">
         <h2 className="text-3xl capitalize">Kurslar</h2>
       </div>
-      <div className="container mx-auto flex justify-center flex-wrap flex-grow gap-5">
+      <div className="container mx-auto flex justify-center flex-wrap flex-grow gap-5 pb-3">
         {isLoading ? <FetchLoading /> : Array.isArray(data) && data?.length ? (
           data?.map((course: ICourse, index: number) => (
             <CourseCard key={course.name} item={course} index={index} />
