@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import { client } from "../server/client"
-export const useQueryData = (query: string, params: any) => {
+export const useQueryData = (query: string, params: string | object) => {
     const fetchData = async () => {
         try {
             const data = await client.fetch(query, params ? params : '')

@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { mentorQ } from "../server/query";
 import Teacher from "../components/Teacher";
 import { ITeam } from "../types/types";
@@ -13,19 +12,15 @@ const About = () => {
       <div className="title py-5 dark:text-white flex items-center flex-col">
         <h2 className="text-3xl capitalize">Bizning Jamoa</h2>
       </div>
-      <motion.div className="container mx-auto">
-        <div className="flex justify-center flex-grow items-center gap-5">
-          {isLoading ? (
-            <FetchLoading />
-          ) : Array.isArray(data) && data.length ? (
-            data?.map((mentor: ITeam, index: number) => (
-              <Teacher key={mentor._id} teacher={mentor} index={index} />
-            ))
-          ) : (
-            <EmptyPage />
-          )}
-        </div>
-      </motion.div>
+      <div className="container mx-auto flex justify-center flex-wrap flex-grow gap-5">
+        {isLoading ? (
+          <FetchLoading />
+        ) : Array.isArray(data) && data.length ? (
+          data?.map((mentor: ITeam, index: number) => (
+            <Teacher key={mentor._id} teacher={mentor} index={index} />
+          ))
+        ) : <EmptyPage />}
+      </div>
     </section>
   );
 };

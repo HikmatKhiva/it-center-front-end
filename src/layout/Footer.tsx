@@ -10,8 +10,8 @@ const Footer = () => {
         <div className="flex flex-wrap w-full sm:w-fit">
           <div className="w-full sm:w-fit">
             <Logo className="" />
-            <div className="mt-2 flex gap-2">
-              <p>design by </p>
+            <div className="mt-2 flex items-center gap-2">
+              <p className="text-xs font-medium">Design by </p>
               <a
                 className="text-main hover:scale-110 transition-all duration-300 font-medium"
                 href="https://hikmatbek.uz"

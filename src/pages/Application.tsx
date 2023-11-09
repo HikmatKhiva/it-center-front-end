@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, FormHTMLAttributes } from "react";
 import { client } from "../server/client";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
@@ -19,7 +19,7 @@ const Application = () => {
     phone: newStudent.phone,
     course: newStudent.course,
   };
-  const handleChange = (e: ChangeEvent<any>) =>
+  const handleChange = (e: ChangeEvent<HTMLInputElement | any>): void =>
     setNewStudent((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   const handleClick = async (e: FormEvent) => {
     e.preventDefault();
