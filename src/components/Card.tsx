@@ -1,7 +1,7 @@
-import { IAboutCard } from "../types/types";
+import { AboutCard } from "../types/types";
 import { motion } from "framer-motion";
 import { fadeCardAnimate } from "../utils/motion";
-const Card = ({ card, index }: { card: IAboutCard; index: number }) => {
+const Card = ({ card, index }: { card: AboutCard; index: number }) => {
   return (
     <motion.figure
       whileInView={fadeCardAnimate(index * .3,1)}
