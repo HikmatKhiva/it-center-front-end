@@ -1,5 +1,5 @@
 import { BsTelegram, BsFillTelephoneFill } from "react-icons/bs";
-import { INavigation, ISocial, IAboutCard } from "../types/types";
+import { INavigation, ISocial, AboutCard } from "../types/types";
 import { computer, english, frontEnd } from "../assets"
 export const navigation: INavigation[] = [
   { id: 1, title: "asosiy", url: "/" },
@@ -24,28 +24,26 @@ export const socialUrl: ISocial[] = [
     color: "",
   },
 ];
-
-export const aboutCard: IAboutCard[] = [
+export const aboutCard: AboutCard[] = [
   {
     id: 1,
     title: "Kompyuter savodxonligi",
     image: computer,
-    graduates:200
+    graduates: 200
   },
   {
     id: 2,
     title: "Front End",
     image: frontEnd,
-    graduates:200
+    graduates: 200
   },
   {
     id: 3,
     title: "Kompyuter savodxonligi",
     image: english,
-    graduates:200
+    graduates: 200
   },
 ]
-
 export const defaultOptions = {
   reverse: false, // reverse the tilt direction
   max: 45, // max tilt rotation (degrees)
@@ -57,7 +55,6 @@ export const defaultOptions = {
   reset: true, // If the tilt effect has to be reset on exit.
   easing: "cubic-bezier(.03,.98,.52,.99)", // Easing on enter/exit.
 };
-
 export const logo = {
   reverse: false, // reverse the tilt direction
   max: 20, // max tilt rotation (degrees)
