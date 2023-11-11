@@ -1,5 +1,15 @@
 import { Type_IP, Type_Location } from "../types/types"
-export function newLocation(location: Type_IP | any): Type_Location {
+export function newLocation(location: Type_IP | null): Type_Location {
+    if (!location) return {
+        _type: "clientInfo",
+        country: "",
+        city: "",
+        ip: "",
+        network: "",
+        lat: 0,
+        lng: 0,
+        country_number: ""
+    }
     return {
         _type: "clientInfo",
         country: location?.country_name,

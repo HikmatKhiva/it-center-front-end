@@ -125,3 +125,17 @@ export type Type_Location = {
   lng: number;
   country_number: string;
 };
+export type ErrorResponse = {
+  data?: unknown;
+  status?: number;
+  statusText: string;
+  message?: string;
+};
+type Type_Asset = {
+  _ref: string
+  _type: string
+}
+export type Type_Source = {
+  asset: Type_Asset
+  _type: string;
+}

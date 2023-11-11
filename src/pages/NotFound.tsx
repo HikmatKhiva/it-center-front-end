@@ -1,9 +1,11 @@
 import { TabTitle } from "../utils/TabTitle";
+import { notFound } from "../assets";
 const NotFound = () => {
-  TabTitle('Biz-Haqimizda')
+  TabTitle("Biz-Haqimizda");
   return (
     <section className=" not-found bg-notFound dark:bg-dark grid place-items-center">
-      <div className="text-center dark:text-main">
+      <div className="text-center flex flex-col items-center dark:text-main">
+        <img className="md:w-80" src={notFound} alt="not found gif" />
         <h2 className="text-4xl">
           Sahifa Topilmadi <br />
           404

@@ -19,6 +19,7 @@ const Application = () => {
     phone: newStudent.phone,
     course: newStudent.course,
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleChange = (e: ChangeEvent<HTMLInputElement | any>): void =>
     setNewStudent((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   const handleClick = async (e: FormEvent) => {
@@ -38,8 +39,9 @@ const Application = () => {
         phone: "90",
         course: "front-end",
       });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
-      toast.error("Nimadir xato iltimos qayta urinib ko'ring ", err.message);
+      toast.error("Nimadir xato iltimos qayta urinib ko'ring ", err?.message);
       setLoading(false);
     }
   };

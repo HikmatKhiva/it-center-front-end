@@ -1,7 +1,9 @@
 import { urlFor } from "../server/client";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const PortableTextComponents: Partial<any> = {
   types: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     image: ({ value }: { value: any }) => {
       return (
         <LazyLoadImage
@@ -14,6 +16,7 @@ export const PortableTextComponents: Partial<any> = {
     },
   },
   marks: {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     link: ({ children, value }: { children: any; value: any }) => {
       const rel = !value.href.startsWith("/")
         ? "noreferrer noopener"

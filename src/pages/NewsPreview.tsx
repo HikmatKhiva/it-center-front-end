@@ -9,6 +9,7 @@ import { INews } from "../types/types";
 const NewsPreview = () => {
   const params = useParams();
   const { data, isLoading } = useQueryData(newsQuery, params);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const news: INews[] | any = Array.isArray(data) && data;
   if (isLoading) return <PageLoading />;
   if (!data.length) return <NotFound />;
