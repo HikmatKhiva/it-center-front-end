@@ -131,11 +131,3 @@ export type ErrorResponse = {
   statusText: string;
   message?: string;
 };
-type Type_Asset = {
-  _ref: string
-  _type: string
-}
-export type Type_Source = {
-  asset: Type_Asset
-  _type: string;
-}

@@ -29,7 +29,7 @@ const CourseCard = ({
                   effect="blur"
                   className="w-10 object-cover hover:scale-110 transition-all duration-300 cursor-pointer"
                   key={index}
-                  src={urlFor(s).url()}
+                  src={urlFor(s)?.url()}
                   alt={s?._type}
                 />
               ))}
