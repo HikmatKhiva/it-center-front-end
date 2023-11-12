@@ -7,4 +7,4 @@ export { default as logo } from "./images/logo.svg"
 export { default as anonymous } from "./images/anonymous-mask.svg"
 export { default as webAddress } from "./images/web-address-64.png"
 // gifs
-export { default as notFound } from "./gifs/404-animation.gif"
+// export { default as notFound } from "./gifs/404-animation.gif"
