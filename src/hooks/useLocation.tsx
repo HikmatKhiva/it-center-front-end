@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Type_IP } from "../types/types";
 const useLocation = () => {
   const [location, setLocation] = useState<Type_IP | null>(null);
   const findLocation = async () => {

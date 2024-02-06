@@ -1,6 +1,5 @@
 import { RiEmotionSadFill } from "react-icons/ri";
 import { useRouteError } from "react-router-dom";
-import { ErrorResponse } from "../types/types";
 const Error = () => {
   const error: unknown = useRouteError();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
