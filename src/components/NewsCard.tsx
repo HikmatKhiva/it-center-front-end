@@ -3,7 +3,6 @@ import { fadeCardAnimate } from "../utils/motion";
 import { motion } from "framer-motion";
 import { Tilt } from "react-tilt";
 import { defaultOptions } from "../settings";
-import { INews } from "../types/types";
 import { urlFor } from "../server/client";
 import { itCenter } from "../assets";
 import { LazyLoadImage } from "react-lazy-load-image-component";

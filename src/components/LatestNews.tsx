@@ -3,10 +3,9 @@ import { fadeTitle } from "../utils/motion";
 import NewsCard from "./NewsCard";
 import { container } from "../utils/motion";
 import { news } from "../server/query";
-import { INews } from "../types/types";
 import { useQueryData } from "../hooks/useQueryData";
 const LatestNews = () => {
-  const { data } = useQueryData(news,'');
+  const { data } = useQueryData(news, "");
   return (
     <section className="latest-news bg-gray-100 py-10 dark:bg-dark">
       <div className="title flex flex-col items-center">
@@ -22,7 +21,9 @@ const LatestNews = () => {
       <motion.div variants={container} className="container mx-auto">
         <div className="py-10 flex justify-center">
           {data ? (
-            data.map((news: INews, index: number) => <NewsCard key={index} news={news} index={index} />)
+            data.map((news: INews, index: number) => (
+              <NewsCard key={index} news={news} index={index} />
+            ))
           ) : (
             <p>Loading...</p>
           )}

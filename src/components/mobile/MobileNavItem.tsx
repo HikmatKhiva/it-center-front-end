@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import { INavigation } from "../../types/types";
 import { motion } from "framer-motion";
 import { fadeNavMobile } from "../../utils/motion";
 import { useAppDispatch } from "../../hooks/app";
 import { toggleHideMobileNav } from "../../redux/reducer/setting";
 const NavItem = ({ nav, index }: { nav: INavigation; index: number }) => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   return (
     <motion.li
       onClick={() => dispatch(toggleHideMobileNav())}

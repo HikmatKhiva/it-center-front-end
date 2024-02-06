@@ -1,4 +1,3 @@
-import { Type_IP, Type_Location } from "../types/types"
 export function newLocation(location: Type_IP | null): Type_Location {
     if (!location) return {
         _type: "clientInfo",

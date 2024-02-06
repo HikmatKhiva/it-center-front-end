@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-import { client } from "../server/client";
+// import { client } from "../server/client";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { TabTitle } from "../utils/TabTitle";
@@ -12,13 +12,13 @@ const Application = () => {
     phone: "90",
     course: state?.course || "english",
   });
-  const [loading, setLoading] = useState(false);
-  const sanity_newStudent = {
-    _type: "application",
-    name: newStudent.name,
-    phone: newStudent.phone,
-    course: newStudent.course,
-  };
+  // const [loading, setLoading] = useState(false);
+  // const sanity_newStudent = {
+  //   _type: "application",
+  //   name: newStudent.name,
+  //   phone: newStudent.phone,
+  //   course: newStudent.course,
+  // };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleChange = (e: ChangeEvent<HTMLInputElement | any>): void =>
     setNewStudent((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -30,10 +30,10 @@ const Application = () => {
     }
     if (!newStudent.course) return toast.error("Iltimos kursni tanlang ");
     try {
-      setLoading(true);
-      await client.create(sanity_newStudent);
-      setLoading(false);
-      toast.success("Arizangiz qabul qilindi");
+      // setLoading(true);
+      // await client.create(sanity_newStudent);
+      // setLoading(false);
+      // toast.success("Arizangiz qabul qilindi");
       setNewStudent({
         name: "",
         phone: "90",
@@ -42,7 +42,7 @@ const Application = () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       toast.error("Nimadir xato iltimos qayta urinib ko'ring ", err?.message);
-      setLoading(false);
+      // setLoading(false);
     }
   };
   return (
@@ -58,6 +58,7 @@ const Application = () => {
           type="text"
           onChange={handleChange}
           name="name"
+          disabled={true}
           value={newStudent.name}
           placeholder="Ismingizni Kirting"
           autoComplete="off"
@@ -74,6 +75,7 @@ const Application = () => {
           </div>
           <input
             type="text"
+            disabled={true}
             placeholder="Tel raqamingnizni kiriting"
             value={newStudent.phone}
             autoComplete="off"
@@ -87,6 +89,7 @@ const Application = () => {
         <select
           defaultValue={state?.course || "front-end"}
           onClick={handleChange}
+          disabled={true}
           name="course"
           className="border w-full p-2 rounded-md outline-none focus:border-main"
         >
@@ -95,7 +98,7 @@ const Application = () => {
           <option value="english">IT English</option>
         </select>
         <button
-          disabled={loading}
+          disabled={true}
           onClick={handleClick}
           type="submit"
           className="my-5 bg-main p-2 outline-none text-white rounded w-full"

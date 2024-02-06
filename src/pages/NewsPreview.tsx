@@ -5,7 +5,6 @@ import { PageLoading } from "../loadings";
 import { PortableText } from "@portabletext/react";
 import { PortableTextComponents } from "../components/PortableText";
 import NotFound from "./NotFound";
-import { INews } from "../types/types";
 const NewsPreview = () => {
   const params = useParams();
   const { data, isLoading } = useQueryData(newsQuery, params);

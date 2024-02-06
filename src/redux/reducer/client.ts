@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store/app";
-import { ClientState, Type_IP } from "../../types/types";
 import { toast } from "react-toastify";
 import { newLocation } from "../../server/newLocation";
 import { client } from "../../server/client";

@@ -3,7 +3,6 @@ import { client } from "../server/client";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { TabTitle } from "../utils/TabTitle";
-import { IComplaint } from "../types/types";
 const Complaint = () => {
   TabTitle("Shikoyat bo'limi");
   const [complaint, setComplaint] = useState<IComplaint>({

@@ -1,4 +1,3 @@
-import { ICourse } from "../types/types";
 import { Tilt } from "react-tilt";
 import { defaultOptions } from "../settings";
 import { urlFor } from "../server/client";
@@ -22,7 +21,9 @@ const CourseCard = ({
       <Tilt options={defaultOptions}>
         <Link to="/contact" state={{ course: item?.contact }}>
           <div className="flex flex-col items-center">
-            <h3 className="text-2xl xl:text-3xl text-center w-full my-5 truncate">{item.name}</h3>
+            <h3 className="text-2xl xl:text-3xl text-center w-full my-5 truncate">
+              {item.name}
+            </h3>
             <span className="flex gap-2 text-2xl">
               {item?.stack?.map((s, index) => (
                 <LazyLoadImage

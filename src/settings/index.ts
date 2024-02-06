@@ -1,5 +1,4 @@
 import { BsTelegram, BsFillTelephoneFill } from "react-icons/bs";
-import { INavigation, ISocial, AboutCard } from "../types/types";
 import { computer, english, frontEnd } from "../assets"
 export const navigation: INavigation[] = [
   { id: 1, title: "asosiy", url: "/" },

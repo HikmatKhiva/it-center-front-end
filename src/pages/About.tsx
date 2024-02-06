@@ -1,6 +1,5 @@
 import { mentorQ } from "../server/query";
 import Teacher from "../components/Teacher";
-import { ITeam } from "../types/types";
 import { FetchLoading, EmptyPage } from "../loadings";
 import { TabTitle } from "../utils/TabTitle";
 import { useQueryData } from "../hooks/useQueryData";
@@ -19,7 +18,9 @@ const About = () => {
           data?.map((mentor: ITeam, index: number) => (
             <Teacher key={mentor._id} teacher={mentor} index={index} />
           ))
-        ) : <EmptyPage />}
+        ) : (
+          <EmptyPage />
+        )}
       </div>
     </section>
   );

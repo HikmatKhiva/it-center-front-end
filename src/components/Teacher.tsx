@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Tilt } from "react-tilt";
 import { defaultOptions } from "../settings";
 import { fadeCardAnimate } from "../utils/motion";
-import { ISocial, ITeam } from "../types/types";
 import Social from "./Social";
 import { urlFor } from "../server/client";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -22,7 +21,9 @@ const Teacher = ({ index, teacher }: { index: number; teacher: ITeam }) => {
           />
           <div className="py-3 px-4 flex flex-col">
             <h4 className="text-2xl text-center text-main w-full truncate">
-              {teacher?.occupation ? teacher?.occupation:"Kompyuter mutaxassisi"}
+              {teacher?.occupation
+                ? teacher?.occupation
+                : "Kompyuter mutaxassisi"}
             </h4>
             <div className="text-center">
               <h5 className="font-medium">{teacher.name}</h5>

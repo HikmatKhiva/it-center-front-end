@@ -3,7 +3,6 @@ import { news } from "../server/query";
 import { TabTitle } from "../utils/TabTitle";
 import { NewsCard } from "../components";
 import { EmptyPage, FetchLoading } from "../loadings";
-import { INews } from "../types/types";
 const News = () => {
   TabTitle("Yangiliklar");
   const { data, isLoading } = useQueryData(news, "");

@@ -1,7 +1,6 @@
 import { courseQ } from "../server/query";
 import { EmptyPage, FetchLoading } from "../loadings";
 import CourseCard from "../components/CourseCard";
-import { ICourse } from "../types/types";
 import { TabTitle } from "../utils/TabTitle";
 import { useQueryData } from "../hooks/useQueryData";
 const Course = () => {
