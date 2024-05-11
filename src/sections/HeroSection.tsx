@@ -3,5 +3,4 @@ const HeroSection = () => {
     <section>HeroSection</section>
   )
 }
-
 export default HeroSection

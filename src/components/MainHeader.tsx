@@ -9,6 +9,8 @@ import {
 } from "@nextui-org/navbar";
 import Link from "next/link";
 import { navLinks } from "@/constant";
+import ThemeMode from "./ThemeMode";
+
 const MainHeader = () => {
   return (
     <Navbar isBordered>
@@ -38,6 +40,7 @@ const MainHeader = () => {
             <Link href={link.path}> {link.title}</Link>
           </NavbarItem>
         ))}
+      <ThemeMode />
       </NavbarContent>
     </Navbar>
   );

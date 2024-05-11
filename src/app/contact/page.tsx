@@ -8,16 +8,17 @@ const ContactPage = () => {
       value: "login",
       content: <Login />,
     },
-    {
-      title: "Register",
-      value: "register",
-      content: <Register />,
-    },
+    // {
+    //   title: "Register",
+    //   value: "register",
+    //   content: <Register />,
+    // },
   ];
   return (
     <main>
       <div className="container mx-auto py-10">
-        <Tabs tabs={tabs} />
+        {/* <Tabs tabs={tabs} /> */}
+        <Login />
       </div>
     </main>
   );
