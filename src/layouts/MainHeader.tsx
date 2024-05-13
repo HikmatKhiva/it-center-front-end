@@ -1,3 +1,4 @@
+"use client";
 import {
   Navbar,
   NavbarBrand,
@@ -9,21 +10,32 @@ import {
 } from "@nextui-org/navbar";
 import Link from "next/link";
 import { navLinks } from "@/constant";
-import ThemeMode from "./ThemeMode";
-
+// import ThemeMode from "../components/ThemeMode";
+import Logo from "../components/icons/Logo";
+import { useState } from "react";
 const MainHeader = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   return (
-    <Navbar isBordered>
+    <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent className="sm:hidden">
-        <NavbarMenuToggle />
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        />
       </NavbarContent>
-      <NavbarContent className="sm:hidden pr-3" justify="center">
+      <NavbarContent className="sm:hidden" justify="center">
         <NavbarBrand>
-          <p className="font-bold text-inherit">ACME</p>
+          <Link href="/">
+            <Logo />
+          </Link>
         </NavbarBrand>
+        {/* <ThemeMode /> */}
+
         <NavbarMenu>
           {navLinks.map((link, index) => (
-            <NavbarMenuItem key={`${link.id}-${index}`}>
+            <NavbarMenuItem
+              onClick={() => setIsMenuOpen(false)}
+              key={`${link.id}-${index}`}
+            >
               <Link href={link.path}> {link.title}</Link>
             </NavbarMenuItem>
           ))}
@@ -31,7 +43,9 @@ const MainHeader = () => {
       </NavbarContent>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarBrand>
-          <p className="font-bold text-inherit">ACME</p>
+          <Link href="/">
+            <Logo />
+          </Link>
         </NavbarBrand>
       </NavbarContent>
       <NavbarContent className="sm:flex hidden" justify="end">
@@ -40,7 +54,7 @@ const MainHeader = () => {
             <Link href={link.path}> {link.title}</Link>
           </NavbarItem>
         ))}
-      <ThemeMode />
+        {/* <ThemeMode /> */}
       </NavbarContent>
     </Navbar>
   );
