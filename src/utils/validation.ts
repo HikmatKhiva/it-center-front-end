@@ -8,3 +8,8 @@ export const applicationSchema = z.object({
     ),
   courses: z.string({ message: "Kursni tanlash shart!" }),
 });
+
+export const adminLoginSchema = z.object({
+  email: z.string({ message: "maydon bo'sh bo'lmasligi kerak" }).min(3).email(),
+  password: z.string({message:"maydon bo'sh bo'lmasligi kerak"}).min(6),
+});

@@ -3,6 +3,7 @@ interface INavLink {
   id: number;
   title: string;
   path: string;
+  children?: INavLink[];
 }
 interface ICourses {
   id: number;
@@ -22,5 +23,11 @@ interface IAboutContent {
   id: number;
   title: string;
   description: string;
-  lottie?:any
+  lottie?: any;
+}
+interface ICourse {
+  id: number;
+  title: string;
+  description: string;
+  icons: any[];
 }

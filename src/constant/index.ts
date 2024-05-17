@@ -1,5 +1,13 @@
+import {
+  css,
+  excel,
+  html,
+  javascript,
+  powerpoint,
+  react,
+  word,
+} from "@/assets";
 import { certificate, computer, teacher } from "@/assets/lottie";
-
 export const navLinks: INavLink[] = [
   {
     id: 1,
@@ -107,7 +115,6 @@ export const products: IProducts[] = [
       "https://aceternity.com/images/products/thumbnails/new/efreeinvoice.png",
   },
 ];
-
 export const aboutContent: IAboutContent[] = [
   {
     id: 1,
@@ -132,7 +139,6 @@ export const aboutContent: IAboutContent[] = [
     lottie: certificate,
   },
 ];
-
 const keywords: string[] = [
   "IT-Khiva",
   "Khiva IT Center",
@@ -174,3 +180,17 @@ export const metaData = {
     icon: "./favicon.png",
   },
 };
+export const courses: ICourse[] = [
+  {
+    id: 1,
+    title: "Komyuter Savodxonligi",
+    description: "Komyuter savodxonligi kursi orqali siz microsoft dasturlari bilan ",
+    icons: [word, excel, powerpoint],
+  },
+  {
+    id: 2,
+    title: "Web Front End",
+    description: "",
+    icons: [html, css, javascript, react],
+  },
+];

@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import {
   Form,
   FormControl,
@@ -90,7 +90,7 @@ const Application = () => {
                     <HoverBorder>
                       <Select
                         items={memoCourses}
-                        placeholder="Select a Course"
+                        placeholder="Kursni tanlash "
                         aria-label="courses"
                         name={field.name}
                         ref={field.ref}
