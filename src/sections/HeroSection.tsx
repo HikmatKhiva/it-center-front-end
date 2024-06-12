@@ -5,6 +5,7 @@ const HeroSection = () => {
         Sizning <span className="text-main">IT</span> karyerangizni <br /> shu
         yerdan boshlang!
       </h1>
+      {/* <p>Bizning o'quv markazimizda zamonayiv kasblarni mutaxassislar tomonidan o`gatiladi</p> */}
     </div>
   );
 };

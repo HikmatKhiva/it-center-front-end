@@ -11,7 +11,7 @@ const config: Config = {
     "./src/sections/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/layouts/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/components/(avatar|button|date-picker|dropdown|input|modal|navbar|select|skeleton|toggle|table|ripple|spinner|calendar|date-input|popover|menu|divider|listbox|scroll-shadow|checkbox|spacer).js"
+    "./node_modules/@nextui-org/theme/dist/components/(accordion|avatar|button|date-picker|dropdown|input|modal|navbar|select|skeleton|toggle|table|divider|ripple|spinner|calendar|date-input|popover|menu|listbox|scroll-shadow|checkbox|spacer).js"
   ],
   darkMode: "class",
   theme: {

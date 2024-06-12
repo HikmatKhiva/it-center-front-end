@@ -18,7 +18,7 @@ export default function Home() {
           </div>
           <HeroSectionMobile />
           <AboutSection />
-          <CourseSection />
+          {/* <CourseSection /> */}
           <Suspense fallback={"loading"}>
             <Application />
           </Suspense>

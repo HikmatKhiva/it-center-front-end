@@ -31,3 +31,9 @@ interface ICourse {
   description: string;
   icons: any[];
 }
+
+interface INewsState {
+  title: string;
+  description: string;
+  image: any | null;
+}

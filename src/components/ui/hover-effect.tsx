@@ -3,6 +3,7 @@ import { cn } from "@/utils/cn";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
+import { Accordion, AccordionItem } from "@nextui-org/accordion";
 export const HoverEffect = ({
   items,
   className,
@@ -44,8 +45,20 @@ export const HoverEffect = ({
           </AnimatePresence>
           <Card>
             <div>
-              <CardTitle className="text-2xl mb-2">{item.title}</CardTitle>
-              <div className="flex gap-2">
+              <CardTitle className="text-2xl mb-2 text-center">
+                {item.title}
+              </CardTitle>
+              {/* <Accordion>
+                <AccordionItem
+                  aria-label="Accordion 1"
+                  key="1"
+                  title={"Siz bu kursda nimani o'rganasiz"}
+                >
+                  Lorem ipsum dolor sit amet.
+                </AccordionItem>
+              </Accordion> */}
+
+              {/* <div className="flex gap-2">
                 {item.icons.map((icon, index) => (
                   <Image
                     key={index}
@@ -55,7 +68,7 @@ export const HoverEffect = ({
                     alt={item.title + "icon"}
                   />
                 ))}
-              </div>
+              </div> */}
             </div>
             <CardDescription>{item.description}</CardDescription>
           </Card>

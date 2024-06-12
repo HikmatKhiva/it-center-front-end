@@ -16,20 +16,22 @@ import { useState } from "react";
 const MainHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   return (
-    <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
-      <NavbarContent className="sm:hidden">
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        />
-      </NavbarContent>
-      <NavbarContent className="sm:hidden" justify="center">
+    <Navbar classNames={{
+      base:""
+    }} isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
+      {/* <NavbarContent className="sm:hidden"> */}
+      {/* </NavbarContent> */}
+      {/* Mobile Version*/}
+      <NavbarContent className="sm:hidden w-full" justify="center">
         <NavbarBrand>
           <Link href="/">
             <Logo />
           </Link>
         </NavbarBrand>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        />
         {/* <ThemeMode /> */}
-
         <NavbarMenu>
           {navLinks.map((link, index) => (
             <NavbarMenuItem

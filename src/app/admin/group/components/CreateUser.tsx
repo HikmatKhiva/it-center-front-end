@@ -43,7 +43,7 @@ const CreateUser = ({
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1">
-              Yangi o'quvchi yaratish
+              Yangi o`quvchi yaratish
             </ModalHeader>
             <ModalBody>
               <Form {...form}>
