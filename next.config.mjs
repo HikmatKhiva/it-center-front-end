@@ -9,8 +9,6 @@ const nextConfig = {
         pathname: "/images/products/thumbnails/new/**",
       },
     ],
-    domains:['*']
   },
 };
-
 export default nextConfig;
