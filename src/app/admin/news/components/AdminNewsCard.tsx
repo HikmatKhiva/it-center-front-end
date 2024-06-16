@@ -27,7 +27,10 @@ const AdminNewsCard = () => {
           src="https://aceternity.com/images/products/thumbnails/new/efreeinvoice.png"
           alt=""
         />
-        <Link href="/admin/news/title" className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-bl-md inline-block min-w-4 absolute top-0 right-0">
+        <Link
+          href="/admin/news/title"
+          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-bl-md inline-block min-w-4 absolute top-0 right-0"
+        >
           <IconPencil size={16} />
         </Link>
         <Button
@@ -100,3 +103,4 @@ const AdminNewsCard = () => {
     </>
   );
 };
+export default AdminNewsCard;
