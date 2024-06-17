@@ -7,9 +7,10 @@ import HeroSectionMobile from "@/sections/mobile/HeroSectionMobile";
 import MainHeader from "@/layouts/MainHeader";
 import CourseSection from "@/sections/CourseSection";
 import { Suspense } from "react";
+import { FollowerPointerCard } from "@/components/ui/following-pointer";
 export default function Home() {
   return (
-    <>
+    <FollowerPointerCard>
       <MainHeader />
       <main className="relative">
         <HeroHighlight className="">
@@ -24,6 +25,6 @@ export default function Home() {
           </Suspense>
         </HeroHighlight>
       </main>
-    </>
+    </FollowerPointerCard>
   );
 }
