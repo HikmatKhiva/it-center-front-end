@@ -10,7 +10,8 @@ import { Suspense } from "react";
 import { FollowerPointerCard } from "@/components/ui/following-pointer";
 export default function Home() {
   return (
-    <FollowerPointerCard>
+    // <FollowerPointerCard>
+    <>
       <MainHeader />
       <main className="relative">
         <HeroHighlight className="">
@@ -25,6 +26,7 @@ export default function Home() {
           </Suspense>
         </HeroHighlight>
       </main>
-    </FollowerPointerCard>
+    </>
+    // </FollowerPointerCard>
   );
 }

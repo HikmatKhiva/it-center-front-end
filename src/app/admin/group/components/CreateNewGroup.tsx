@@ -10,7 +10,7 @@ const CreateNewGroup = () => {
   return (
     <>
       <h2 className="text-2xl text-center">Yangi Guruh yaratish</h2>
-      <form className="w-1/2 mx-auto">
+      <form className="w-[70%] mx-auto flex flex-col gap-2 mt-5">
         <Input placeholder="Yangi guruh nomi" />
         <HoverBorder>
           <Select

@@ -1,36 +1,39 @@
+"use client";
 import React from "react";
 import SearchGroupForm from "./components/SearchGroupForm";
 import { Button } from "@nextui-org/button";
-import Link from "next/link";
 import Users from "@/components/icons/Users";
 import AddUser from "@/components/icons/AddUser";
+import { Modal, ModalContent, useDisclosure } from "@nextui-org/modal";
+import { IconEdit } from "@tabler/icons-react";
+import CreateNewGroup from "./components/CreateNewGroup";
+import GroupCard from "./components/GroupCard";
 const AdminGroupPage = () => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   return (
     <div>
       <div className="flex justify-between">
-        <Button radius="sm" color="success" className="text-white">
-          <Link href="/admin/group/new">Yangi Guruh yaratish</Link>
+        <Button
+          onClick={onOpen}
+          radius="sm"
+          color="success"
+          type="button"
+          className="text-white"
+        >
+          Yangi Guruh yaratish
         </Button>
         <SearchGroupForm />
       </div>
-      {/* <div className="flex mt-5">
-        <div className="border w-[300px] p-5 overflow-hidden rounded-md relative">
-          <h2 className="text-xl">Kompyuter Savodxonligi</h2>
-          <div className="flex items-center gap-2">
-            <div className="flex gap-2">
-              <Users />
-              <p className="text-xl">10</p>
-            </div>
-            <Button >
-              <AddUser />
-              <span>O`quvchi qo`shish</span>
-            </Button>
-          </div>
-          <span className="bg-slate-700 p-2 rounded-md absolute bottom-2 right-0 translate-x-[70px] hover:translate-x-0 cursor-pointer text-sm transition-all duration-300">
-            15/05/2024
-          </span>
-        </div>
-      </div> */}
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent className="py-5 min-w-[600px]">
+          <CreateNewGroup />
+        </ModalContent>
+      </Modal>
+      <div className="flex gap-5 flex-wrap mt-5">
+        <GroupCard />
+        <GroupCard />
+        <GroupCard />
+      </div>
     </div>
   );
 };

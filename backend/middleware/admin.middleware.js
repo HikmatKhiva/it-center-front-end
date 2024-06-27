@@ -1,8 +1,6 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-
 dotenv.config();
-
 export async function middleware(req, res, next) {
   if (req.method === "OPTIONS") return next();
   try {
