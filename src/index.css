@@ -79,3 +79,17 @@ section {
 .st4 {
   fill: #93ce03;
 }
+
+
+.it-form-btn {
+  text-decoration: none;
+  background-color: #93ce03;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.75rem 1rem;
+  border-radius: 15px;
+}
+
+.it-margin-bottom {
+  margin-bottom: 1rem;
+}
