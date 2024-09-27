@@ -17,7 +17,7 @@ const Home = () => {
       >
         <div className="container mx-auto overflow-x-hidden flex flex-wrap lg:justify-between justify-center items-center">
           <div>
-              <h1 className="title it-margin-bottom ">
+              <h1 className="title it-margin-bottom">
                 <motion.span
                   variants={fadeTitle("left", 1, 2)}
                   initial="hidden"
