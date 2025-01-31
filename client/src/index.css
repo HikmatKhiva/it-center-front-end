@@ -1,0 +1,29 @@
+@import "tailwindcss";
+html[data-mantine-color-scheme="dark"] .admin-navbar > a.active,
+html[data-mantine-color-scheme="dark"] .admin-navbar a[data-expanded="true"] {
+  background-color: #333435;
+}
+html[data-mantine-color-scheme="light"] .admin-navbar > a.active,
+html[data-mantine-color-scheme="light"] .admin-navbar  a[data-expanded="true"] {
+  background-color: #f3f3f4;
+}
+html[data-mantine-color-scheme="dark"] .admin-navbar > a:hover {
+  background-color: #333435;
+}
+html[data-mantine-color-scheme="light"] .admin-navbar > a:hover {
+  background-color: #f3f3f4;
+}
+html[data-mantine-color-scheme="dark"] .hovered:hover,
+.admin-navbar a.active {
+  /* color: #f3f3f4; */
+}
+html[data-mantine-color-scheme="light"] .hovered:hover,
+.nav-link > a.active {
+  /* color: #333435; */
+}
+.nav-link div span {
+  font-size: 18px;
+}
+
+
+

@@ -1,69 +1,57 @@
-// header link
-interface INavLink {
+interface ILinks {
   id: number;
-  title: string;
-  path: string;
-  children?: INavLink[];
-}
-interface ICourses extends IExtends {
-  id: number;
-  title: string;
-  teacher: string;
-  createdAt: string;
-}
-interface IThemeMode {
-  theme: "light" | "dark";
-}
-
-interface IProducts {
-  title: string;
   link: string;
-  thumbnail: string;
+  label: string;
 }
-interface IAboutContent {
-  id: number;
-  title: string;
-  description: string;
-  lottie?: any;
-}
-interface ICourse {
-  id: number;
-  title: string;
-  description: string;
-  icons: any[];
-}
-
-interface INewsState {
-  title: string;
-  description: string;
-  image: any | null;
-}
-
-interface IExtends {
-  _id: string;
-  __v: number;
-}
-
-interface IGroup extends IExtends {
+interface INewStudent {
   name: string;
-  createAt: string;
-  users: IUsers[];
+  phone: string;
+  course: string;
+  time: string;
 }
-interface IUsers extends IExtends {
+interface INewGroup {
   name: string;
-  surname: string;
+  course_id: string;
+  teacher_id: string;
+}
+interface INewStudent {
+  first_name: string;
+  second_name: string;
+  passport_id: string;
   gender: string;
-  courseId: string;
-  birth_date: string;
-  createdTime: string;
-  certificateId?: string;
+  course_id: string;
+  group_id: string;
+}
+interface IStudent {
+  id: number;
+  first_name: string;
+  second_name: string;
+  passport_id: string;
+  gender: string;
 }
 
-interface IGenders {
+interface IGroup {
   id: number;
   name: string;
-  value: string;
+  code: string;
+  is_group_finished: boolean;
+  teacher_name: string;
+  course_name: string;
+  created_at: string;
+  students: [];
 }
-// interface ICourses {
 
-// }
+interface ICourse {
+  id:number;
+  name: string;
+  teacher_name: string;
+  created_at: string;
+  price?: number;
+}
+
+interface INewCourse {
+  id?: number;
+  name: string;
+  price?: number;
+  teacher_id: string;
+}

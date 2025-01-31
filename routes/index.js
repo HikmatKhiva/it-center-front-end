@@ -1,8 +1,12 @@
 import { Router } from "express";
-import { userRoute } from "./users.js";
+import { studentRoute } from "./students.js";
 import { courseRoute } from "./course.js";
 import { groupRoute } from "./group.js";
+import { certificateRouter } from "./certificate.js";
+import { teacherRoute } from "./teachers.js";
 export const controlRoute = Router();
-controlRoute.use("/users", userRoute);
+controlRoute.use("/student", studentRoute);
 controlRoute.use("/course", courseRoute);
 controlRoute.use("/group", groupRoute);
+controlRoute.use("/certificate", certificateRouter);
+controlRoute.use("/teachers", teacherRoute);
