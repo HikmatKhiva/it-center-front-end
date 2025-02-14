@@ -1,28 +1,34 @@
-import { Button, Table } from "@mantine/core";
+import { Table } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
 import { getAllCourse } from "../../api/api.course";
-const CourseTable = () => {
+import UpdatedCourseModal from "./UpdatedCourseModal";
+import DeleteCourseModal from "./DeleteCourseModal";
+import { useAppSelector } from "../../../hooks/redux";
+const CourseTable = ({ search }: { search: string }) => {
+  const { admin } = useAppSelector((state) => state.admin);
   const { data, isLoading } = useQuery<ICourse[]>({
     queryKey: ["courses"],
-    queryFn: getAllCourse,
+    queryFn: () => getAllCourse(admin?.token || ""),
   });
-  const rows = data?.map((course: ICourse) => (
-    <Table.Tr key={course.id}>
-      <Table.Td>{course.name}</Table.Td>
-      <Table.Td>{course.teacher_name}</Table.Td>
-      <Table.Td>{course.created_at}</Table.Td>
-      <Table.Td>
-        <Button color="green" size="xs" variant="outline">
-          O'zgartirish ✏️
-        </Button>
-      </Table.Td>
-      <Table.Td>
-        <Button color="red" size="xs" variant="outline">
-          O'chirish 🗑️
-        </Button>
-      </Table.Td>
-    </Table.Tr>
-  ));
+  const rows =
+    Array.isArray(data) &&
+    data
+      ?.filter((course: ICourse) =>
+        course.name.toLowerCase().includes(search.trim().toLowerCase())
+      )
+      .map((course: ICourse) => (
+        <Table.Tr key={course.id}>
+          <Table.Td>{course.name}</Table.Td>
+          <Table.Td>{course.teacher.first_name}</Table.Td>
+          <Table.Td>{course.created_at}</Table.Td>
+          <Table.Td>
+            <UpdatedCourseModal course={course} />
+          </Table.Td>
+          <Table.Td>
+            <DeleteCourseModal id={course?.id} />
+          </Table.Td>
+        </Table.Tr>
+      ));
   return (
     <Table verticalSpacing="md" highlightOnHover>
       <Table.Thead>
@@ -38,5 +44,4 @@ const CourseTable = () => {
     </Table>
   );
 };
-
 export default CourseTable;

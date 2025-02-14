@@ -1,10 +1,11 @@
 @import "tailwindcss";
+
 html[data-mantine-color-scheme="dark"] .admin-navbar > a.active,
 html[data-mantine-color-scheme="dark"] .admin-navbar a[data-expanded="true"] {
   background-color: #333435;
 }
 html[data-mantine-color-scheme="light"] .admin-navbar > a.active,
-html[data-mantine-color-scheme="light"] .admin-navbar  a[data-expanded="true"] {
+html[data-mantine-color-scheme="light"] .admin-navbar a[data-expanded="true"] {
   background-color: #f3f3f4;
 }
 html[data-mantine-color-scheme="dark"] .admin-navbar > a:hover {
@@ -25,5 +26,42 @@ html[data-mantine-color-scheme="light"] .hovered:hover,
   font-size: 18px;
 }
 
+.custom-input {
+  border-color: rgb(206, 212, 218);
+  font-size: 14px;
+  outline: none;
+}
+html[data-mantine-color-scheme="dark"] .custom-input {
+  border-color: rgb(66, 66, 66);
+}
+html[data-mantine-color-scheme="light"] .tabular-nums {
+  color: black;
+}
+.custom-input:focus {
+  border-color: #228be6;
+}
 
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: rotate(-10deg);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: rotate(10deg);
+  }
+}
+.notification:hover  img {
+  animation-name: shake;
+  animation-duration: 4s; /* Duration of the shake */
 
+}

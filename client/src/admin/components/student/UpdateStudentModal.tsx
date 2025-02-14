@@ -3,11 +3,13 @@ import { Button, Modal, Select, Stack, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { updateStudent } from "../../api/api.student";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useAppSelector } from "../../../hooks/redux";
 const UpdateStudentModal = ({ student }: { student: IStudent }) => {
   const client = useQueryClient();
+  const { admin } = useAppSelector((state) => state.admin);
   const [opened, { open, close }] = useDisclosure(false);
   const { mutateAsync } = useMutation({
-    mutationFn: updateStudent,
+    mutationFn:(data: IStudent)=> updateStudent(data,admin?.token || ""),
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ["students"] });
       close();

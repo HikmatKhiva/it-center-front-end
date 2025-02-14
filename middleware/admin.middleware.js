@@ -1,7 +1,8 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
-export async function middleware(req, res, next) {
+const jwtSecret = process.env.jwtSecret;
+export async function middlewareAdmin(req, res, next) {
   if (req.method === "OPTIONS") return next();
   try {
     const token = req.headers.authorization.split(" ")[1]; // token

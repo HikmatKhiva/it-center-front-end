@@ -1,6 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 // Main Pages
-import { LoadHome, LoadContact } from "./pages";
+import {
+  LoadHomePage,
+  LoadContactPage,
+  LoadNewsPage,
+  LoadNewsPreview,
+} from "./pages";
 // layouts
 import Default from "./layouts/Default";
 // lazy loading
@@ -16,6 +21,10 @@ import {
   LoadAdminGroupId,
   LoadAdminCourse,
   LoadAdminTeachers,
+  LoadAdminNewsCreate,
+  LoadAdminNewStudents,
+  LoadAdminNewsPreview,
+  LoadAdminNewsUpdate,
 } from "./admin/pages";
 // Admin Layout
 import { LoadAdminLayout } from "./admin/layouts";
@@ -26,11 +35,24 @@ export const routes = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <LazyLoadPage Page={LoadHome} />,
+        element: <LazyLoadPage Page={LoadHomePage} />,
       },
       {
         path: "/contact",
-        element: <LazyLoadPage Page={LoadContact} />,
+        element: <LazyLoadPage Page={LoadContactPage} />,
+      },
+      {
+        path: "/news",
+        children: [
+          {
+            index: true,
+            element: <LazyLoadPage Page={LoadNewsPage} />,
+          },
+          {
+            path: ":id",
+            element: <LazyLoadPage Page={LoadNewsPreview} />,
+          },
+        ],
       },
     ],
   },
@@ -40,14 +62,14 @@ export const routes = createBrowserRouter([
     children: [
       {
         path: "main",
-        element: <LazyLoadPage Page={LoadAdminHome} />,
+        element: <LazyAdminPage Page={LoadAdminHome} />,
       },
       {
         path: "group",
         children: [
           {
             index: true,
-            element: <LazyLoadPage Page={LoadAdminGroup} />,
+            element: <LazyAdminPage Page={LoadAdminGroup} />,
           },
           {
             path: ":id",
@@ -57,19 +79,40 @@ export const routes = createBrowserRouter([
       },
       {
         path: "news",
-        element: <LazyLoadPage Page={LoadAdminNews} />,
+        children: [
+          {
+            index: true,
+            element: <LazyAdminPage Page={LoadAdminNews} />,
+          },
+          {
+            path: "create",
+            element: <LazyAdminPage Page={LoadAdminNewsCreate} />,
+          },
+          {
+            path: ":id",
+            element: <LazyAdminPage Page={LoadAdminNewsPreview} />,
+          },
+          {
+            path: "update/:id",
+            element: <LazyAdminPage Page={LoadAdminNewsUpdate} />,
+          },
+        ],
       },
       {
         path: "course",
-        element: <LazyLoadPage Page={LoadAdminCourse} />,
+        element: <LazyAdminPage Page={LoadAdminCourse} />,
       },
       {
         path: "teachers",
-        element: <LazyLoadPage Page={LoadAdminTeachers} />,
+        element: <LazyAdminPage Page={LoadAdminTeachers} />,
       },
       {
         path: "messages",
-        element: <LazyLoadPage Page={LoadAdminMessages} />,
+        element: <LazyAdminPage Page={LoadAdminMessages} />,
+      },
+      {
+        path: "students",
+        element: <LazyAdminPage Page={LoadAdminNewStudents} />,
       },
     ],
   },

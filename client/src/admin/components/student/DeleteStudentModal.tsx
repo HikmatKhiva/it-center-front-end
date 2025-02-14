@@ -1,14 +1,22 @@
 import { useDisclosure } from "@mantine/hooks";
 import { Button, Group, Modal, Text } from "@mantine/core";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteStudent } from "../../api/api.student";
+import { useAppSelector } from "../../../hooks/redux";
 
 const DeleteStudentModal = ({ id }: { id: number }) => {
+  const { admin } = useAppSelector((state) => state.admin);
   const [opened, { open, close }] = useDisclosure(false);
+  const client = useQueryClient();
   const { mutateAsync } = useMutation({
-    mutationFn: deleteStudent,
-    onSuccess: () => {},
+    mutationFn: () => deleteStudent(id, admin?.token || ""),
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ["students"] });
+    },
   });
+  const handleDelete = async () => {
+    await mutateAsync();
+  };
   return (
     <>
       <Button onClick={open} color="red" size="xs" variant="outline">
@@ -18,19 +26,16 @@ const DeleteStudentModal = ({ id }: { id: number }) => {
         centered
         opened={opened}
         onClose={close}
-        title="O'quvchini o'chirish" // Optional title for clarity
+        title="O'qituvchini o'chirish" // Optional title for clarity
       >
         <Text size="md" className="text-center">
-          Siz ushbu o'quvchini o'chirishni xohlaysizmi?
+          Siz ushbu o'qituvchini o'chirishni xohlaysizmi?
         </Text>
         {/* Confirmation message */}
         <Group mt={20} justify="end" gap="10">
           <Button
             color="green"
-            onClick={async () => {
-              await mutateAsync(id);
-              close();
-            }}
+            onClick={handleDelete}
           >
             Ha
           </Button>

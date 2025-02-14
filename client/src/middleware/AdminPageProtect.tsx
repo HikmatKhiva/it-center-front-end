@@ -1,13 +1,18 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAppSelector } from "../hooks/redux"; // Ensure this path is correct
+
 const AdminPageProtect = () => {
   const navigate = useNavigate();
-  const admin = sessionStorage.getItem("admin") || true;
+  const location = useLocation();
+  const { admin } = useAppSelector((state) => state.admin);
   useEffect(() => {
-    if (!admin) {
+    if (!admin && location.pathname !== "/auth") {
       navigate("/auth");
+    } else if (admin && location.pathname === "/auth") {
+      navigate("/admin");
     }
-  }, [admin]);
+  }, [admin, location.pathname]);
   return null;
 };
 

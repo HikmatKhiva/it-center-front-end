@@ -4,12 +4,13 @@ const GroupSVG = () => {
   return (
     <motion.svg
       version="1.1"
-      id="svg2"
+      id="groups_id"
       xmlns="http://www.w3.org/2000/svg"
-      width="60px"
-      height="60px"
+      width="40px"
+      whileInView={{ scale: [0, 1] }}
+      height="40px"
       viewBox="0 0 1200 1200"
-      enable-background="new 0 0 1200 1200"
+      enableBackground="new 0 0 1200 1200"
     >
       <motion.path
         whileInView={{ pathLength: [0, 1], transition: { duration: 2 } }}

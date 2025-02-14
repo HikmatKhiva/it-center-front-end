@@ -1,16 +1,19 @@
 import express from "express";
 import cors from "cors";
-import { controlRoute } from "./routes/index.js";
+import { V1Routes } from "./v1/index.routes.js";
 const app = express();
 const PORT = process.env?.PORT || 5000;
 import path from "path";
 import fs from "fs";
-// middleware
+import { rateLimiterMiddleware } from "./middleware/rateLimiter.js";
+// middlewares
+// Use the rate limiter middleware
+app.use(rateLimiterMiddleware);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // routes
-app.use("/", controlRoute);
+app.use("/api/v1", V1Routes);
 app.get("/download", (req, res) => {
   const __dirname = path.resolve();
   const tempZipPath = path.join(__dirname, "temp", "100-100.zip");
@@ -28,3 +31,4 @@ app.get("/download", (req, res) => {
 app.listen(PORT, () => {
   console.log(`server running http://localhost:${PORT}`);
 });
+export default app

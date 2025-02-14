@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 const StudentSVG = () => {
   return (
     <motion.svg
-      height="60px"
-      whileInView={{ scale: [0,1] }}
-      width="60px"
+      height="40px"
+      whileInView={{ scale: [0, 1] }}
+      width="40px"
       version="1.1"
       id="Layer_1"
       xmlns="http://www.w3.org/2000/svg"

@@ -1,9 +1,10 @@
-import { Button, Divider, TextInput, Group, Text } from "@mantine/core";
+import { Divider, TextInput, Group, Text } from "@mantine/core";
 import CourseTable from "../../components/course/CourseTable";
-import { BookOpenText } from "lucide-react";
+import { BookOpenText, Search } from "lucide-react";
 import CreateCourseModal from "../../components/course/CreateCourseModal";
-
+import { useState } from "react";
 const AdminCourse = () => {
+  const [search, setSearch] = useState<string>("");
   return (
     <section>
       <Group pb="20" justify="space-between">
@@ -14,15 +15,17 @@ const AdminCourse = () => {
           <BookOpenText />
         </Group>
         <Group>
-          <TextInput className="" placeholder="Kurs qidirish" />
+          <TextInput
+            rightSection={<Search />}
+            onChange={(event) => setSearch(event.target.value)}
+            value={search}
+            placeholder="Kurs qidirish."
+          />
           <CreateCourseModal />
-          {/* <Button color="green" variant="filled">
-            Kurs Yaratish
-          </Button> */}
         </Group>
       </Group>
       <Divider py={10} />
-      <CourseTable />
+      <CourseTable search={search} />
     </section>
   );
 };

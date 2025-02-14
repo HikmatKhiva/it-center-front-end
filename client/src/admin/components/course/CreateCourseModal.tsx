@@ -1,25 +1,35 @@
 import { Button, Modal, Stack, TextInput, Select } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createCourseValidation } from "../../../validation";
 import { createCourse } from "../../api/api.course";
+import { Pencil } from "lucide-react";
+import { useAppSelector } from "../../../hooks/redux";
+import { adminFormData } from "../../api/api.admin";
 const CreateCourseModal = () => {
+  const { admin } = useAppSelector((state) => state.admin);
   const [opened, { open, close }] = useDisclosure(false);
+  const { data, isLoading } = useQuery({
+    queryFn: () => adminFormData(admin?.token || ""),
+    queryKey: ["admin", "form", "data"],
+  });
   const client = useQueryClient();
   const form = useForm({
     initialValues: {
       name: "",
-      price: 10000,
+      price: 100000,
       teacher_id: "",
     } as INewCourse,
     validate: createCourseValidation,
   });
   const { isPending, mutateAsync } = useMutation({
-    mutationFn: createCourse,
+    mutationFn: (course: INewCourse) =>
+      createCourse(course, admin?.token || ""),
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ["courses"] });
       close();
+      form.reset();
     },
   });
   const handleSubmit = async (course: INewCourse) => {
@@ -29,6 +39,7 @@ const CreateCourseModal = () => {
     <>
       <Button
         onClick={open}
+        rightSection={<Pencil />}
         aria-label="open course create modal"
         aria-labelledby="open course create modal"
         color="green"
@@ -73,10 +84,11 @@ const CreateCourseModal = () => {
             />
 
             <Select
+              disabled={isLoading}
               label="O'qituvchini tanlang..."
               placeholder="O''qituvchini tanlang..."
               {...form.getInputProps("teacher_id")}
-              data={[{ value: "2", label: "Hikmat Bekturdiyev" }]}
+              data={data?.teachers}
             />
           </Stack>
           <Button

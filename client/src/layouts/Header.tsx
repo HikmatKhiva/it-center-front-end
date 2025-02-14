@@ -1,13 +1,19 @@
-import { ActionIcon, AppShell } from "@mantine/core";
+import { AppShell } from "@mantine/core";
 import { Link, NavLink } from "react-router-dom";
 import { Burger, Container, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import headers from "./header.module.css";
-import ITKhiva from "../assets/IT_Khiva2.svg";
 import ThemeControl from "../components/ThemeControl";
 import { navLinks } from "../config";
+import LogoSVG from "../motions_components/LogoSVG";
+import NewOpenedGroup from "../components/announcement/NewOpenedGroup";
+import { useQuery } from "@tanstack/react-query";
+import { getNewGroupList } from "../api/api.helper";
 const Header = () => {
   const [opened, { toggle }] = useDisclosure(false);
+  const { data, isLoading } = useQuery({
+    queryKey: ["openedGroups"],
+    queryFn: getNewGroupList,
+  });
   return (
     <AppShell
       header={{ height: 60 }}
@@ -22,7 +28,7 @@ const Header = () => {
         <Container size="xl" p="0" className="h-full">
           <Group h="100%" px="md">
             <Link to="/">
-              <img src={ITKhiva} width="120" alt="brand" />
+              <LogoSVG />
             </Link>
             <Group justify="center" align="center" style={{ flex: 1 }}>
               <Group
@@ -40,25 +46,21 @@ const Header = () => {
                 ))}
               </Group>
             </Group>
-            <ThemeControl />
-            <ActionIcon
+            <Group align="flex-start">
+              <ThemeControl />
+              {(Array.isArray(data) && data.length > 0) && (
+                <NewOpenedGroup groupList={data} />
+              )}
+            </Group>
+
+            <Burger
               onClick={toggle}
-              variant="default"
-              size="lg"
-              aria-label="menu-bars"
-              aria-labelledby="menu-bars"
-              className={headers.bars}
-            >
-              <span>
-                <Burger
-                  aria-label="burger button"
-                  aria-labelledby="burger button"
-                  opened={opened}
-                  hiddenFrom="sm"
-                  size="sm"
-                />
-              </span>
-            </ActionIcon>
+              aria-label="burger button"
+              aria-labelledby="burger button"
+              opened={opened}
+              hiddenFrom="sm"
+              size="sm"
+            />
           </Group>
         </Container>
       </AppShell.Header>

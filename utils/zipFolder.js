@@ -36,4 +36,4 @@ async function zipFolder(folderPath, zipName) {
   console.log("Folder zipped successfully!");
 }
 const __dirname = path.resolve();
-zipFolder(path.join(__dirname, "static", "100-100"), "100-100.zip");
+// zipFolder(path.join(__dirname, "public", "100-100"), "100-100.zip");

@@ -2,8 +2,10 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { ActionIcon, AppShell, Burger, Group, Menu } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import ThemeControl from "../../components/ThemeControl";
-import { Avatar } from "@mantine/core";
+import { motion } from "motion/react";
+import { AdminIcon } from "../../assets";
 import AdminNavbar from "../components/AdminNavbar";
+import LogoSVG from "../../motions_components/LogoSVG";
 const Admin = () => {
   const [opened, { toggle }] = useDisclosure();
   const navigate = useNavigate();
@@ -23,26 +25,28 @@ const Admin = () => {
       <AppShell.Header>
         <Group align="center" justify="space-between" h="100%" px="md">
           <div className="flex items-center gap-4">
-            <ActionIcon
-              variant="default"
-              size="md"
-              aria-label="menu-bars"
+            <Burger
+              opened={opened}
+              onClick={toggle}
+              size="sm"
               hiddenFrom="sm"
-            >
-              <Burger
-                opened={opened}
-                onClick={toggle}
-                size="sm"
-                hiddenFrom="sm"
-              />
-            </ActionIcon>
-            <h2>Logo</h2>
+            />
+            <LogoSVG />
           </div>
           <div className="flex items-center gap-4">
             <ThemeControl />
             <Menu>
               <Menu.Target>
-                <Avatar radius="md" />
+                <ActionIcon variant="default" size="lg">
+                  <motion.img
+                    whileTap={{ scale: [1, 0] }}
+                    transition={{ duration: 0.8, type: "spring" }}
+                    src={AdminIcon}
+                    width={30}
+                    className="object-cover"
+                    alt="icon theme"
+                  />
+                </ActionIcon>
               </Menu.Target>
               <Menu.Dropdown>
                 <Menu.Item onClick={handleLogout}>Logout</Menu.Item>

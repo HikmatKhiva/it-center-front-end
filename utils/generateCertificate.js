@@ -7,64 +7,98 @@ const __dirname = path.resolve();
 const existingPdfBytes = fs.readFileSync(
   path.join(__dirname, "template", "template.pdf")
 );
+const uploadsPath = path.join(__dirname, "public", "certificates");
 const date = new Date();
-async function createPdf(student, code, uploadPath, url) {
-  const pdfDoc = await PDFDocument.load(existingPdfBytes);
-  const poppins = fs.readFileSync(
-    path.join(__dirname, "assets", "font", "Poppins", "Poppins-Medium.ttf")
-  );
 
-  // Register fontkit with the PDF document
-  pdfDoc.registerFontkit(fontKit);
+// color
+// Original RGB values
+const red = 151;
+const green = 193;
+const blue = 25;
 
-  const poppinsFont = await pdfDoc.embedFont(poppins);
+// Normalize RGB values for pdf-lib
+const normalizedRed = red / 255;
+const normalizedGreen = green / 255;
+const normalizedBlue = blue / 255;
 
-  const qrCodeData = await generateQR_code(url);
-  const qrCodeImageBytes = await fetch(qrCodeData).then((res) =>
-    res.arrayBuffer()
-  );
-  // Embed the QR code image in the PDF
-  const qrCodeImage = await pdfDoc.embedPng(qrCodeImageBytes);
 
-  const { width: qrWidth, height: qrHeight } = qrCodeImage.scale(1); // Scale down the image
+async function createPdf(student, group, url) {
+  try {
+    const pdfDoc = await PDFDocument.load(existingPdfBytes);
+    const poppins = fs.readFileSync(
+      path.join(__dirname, "assets", "font", "Poppins", "Poppins-Medium.ttf")
+    );
 
-  const page = pdfDoc.getPage(0);
-  // const page = pdfDoc.addPage()
-  const { height, width } = page.getSize();
-  const fontSize = 45;
-  page.drawText(`${student.first_name} ${student.second_name}`, {
-    x: 50,
-    y: 300,
-    size: fontSize,
-    font: poppinsFont,
-    color: rgb(0, 0, 0),
-  });
-  // Draw the QR code image on the PDF
-  page.drawImage(qrCodeImage, {
-    x: page.getWidth() - qrWidth - 150,
-    y: page.getHeight() - qrHeight - 20,
-  });
+    // Register fontkit with the PDF document
+    pdfDoc.registerFontkit(fontKit);
 
-  // write id
-  page.drawText(`${student?.id}/${code}`, {
-    x: 630,
-    y: 130,
-    font: poppinsFont,
-    size: 16,
-    color: rgb(0, 0, 0),
-  });
+    const poppinsFont = await pdfDoc.embedFont(poppins);
 
-  // date time
-  page.drawText(`${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`, {
-    x: 620,
-    y: 80,
-    font: poppinsFont,
-    size: 18,
-    color: rgb(0, 0, 0),
-  });
-  const filePath = path.join(uploadPath, `${student.id}.pdf`);
-  const pdfByte = await pdfDoc.save();
-  fs.writeFileSync(filePath, pdfByte);
-  return pdfByte;
+    const qrCodeData = await generateQR_code(url);
+    const qrCodeImageBytes = await fetch(qrCodeData).then((res) =>
+      res.arrayBuffer()
+    );
+    // Embed the QR code image in the PDF
+    const qrCodeImage = await pdfDoc.embedPng(qrCodeImageBytes);
+
+    const { width: qrWidth, height: qrHeight } = qrCodeImage.scale(1); // Scale down the image
+
+    const page = pdfDoc.getPage(0);
+    // const page = pdfDoc.addPage()
+    // const { height, width } = page.getSize();
+    const fontSize = 40;
+    page.drawText(`${student.first_name} ${student.second_name}`, {
+      x: 60,
+      y: 310,
+      size: fontSize,
+      font: poppinsFont,
+      color: rgb(0, 0, 0),
+    });
+    // write course name
+    page.drawText(`«${group?.course_name} »`, {
+      x: 60,
+      y: 225,
+      font: poppinsFont,
+      size: 20,
+      color: rgb(normalizedRed, normalizedGreen, normalizedBlue),
+    });
+    // Draw the QR code image on the PDF
+    page.drawImage(qrCodeImage, {
+      x: page.getWidth() - qrWidth - 150,
+      y: page.getHeight() - qrHeight - 20,
+    });
+
+    // write id
+    page.drawText(`${student?.id}/${group.code}`, {
+      x: 630,
+      y: 130,
+      font: poppinsFont,
+      size: 16,
+      color: rgb(0, 0, 0),
+    });
+
+    // date time
+    page.drawText(`${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`, {
+      x: 620,
+      y: 80,
+      font: poppinsFont,
+      size: 18,
+      color: rgb(0, 0, 0),
+    });
+    const newFolder = `${uploadsPath}/${group?.code}`;
+
+    if (!fs.existsSync(newFolder)) {
+      fs.mkdirSync(newFolder);
+    }
+    const filePath = path.join(newFolder, `${student.id}.pdf`);
+    const pdfByte = await pdfDoc.save();
+    console.log(filePath);
+
+    fs.writeFileSync(filePath, pdfByte);
+    return pdfByte;
+  } catch (error) {
+    console.log(error, "pdf");
+    throw error;
+  }
 }
 export default createPdf;

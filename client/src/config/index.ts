@@ -1,5 +1,28 @@
 export const navLinks: ILinks[] = [
   { id: 1, link: "/news", label: "Yangiliklar" },
-  { id: 2, link: "/course", label: "Kurslar" },
-  { id: 3, link: "/contact", label: "Bog'lanish" },
+  { id: 2, link: "/contact", label: "Bog'lanish" },
+];
+
+export const selectMonths: { label: string; value: string }[] = [
+  { label: "January", value: "1" },
+  { label: "February", value: "2" },
+  { label: "March", value: "3" },
+  { label: "April", value: "4" },
+  { label: "May", value: "5" },
+  { label: "June", value: "6" },
+  { label: "July", value: "7" },
+  { label: "August", value: "8" },
+  { label: "September", value: "9" },
+  { label: "October", value: "10" },
+  { label: "November", value: "11" },
+  { label: "December", value: "12" },
+];
+
+export const course_times: { label: string; value: string }[] = [
+  { value: "Ertalab 9:00", label: "Ertalab 9:00" },
+  {
+    value: "Tushlikdan keyin 13:00",
+    label: "Tushlikdan keyin 13:00",
+  },
+  { value: "Muhim emas", label: "Muhim emas" },
 ];

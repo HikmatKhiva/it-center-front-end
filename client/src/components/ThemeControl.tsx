@@ -3,7 +3,8 @@ import {
   useMantineColorScheme,
   useComputedColorScheme,
 } from "@mantine/core";
-import { Sun, Moon } from "lucide-react";
+import { Moon, Sun } from "../assets";
+import { motion } from "motion/react";
 const ThemeControl = () => {
   const { setColorScheme, colorScheme } = useMantineColorScheme({
     keepTransitions: true,
@@ -21,7 +22,14 @@ const ThemeControl = () => {
       size="lg"
       aria-label="Toggle color scheme"
     >
-      {colorScheme === "dark" ? <Sun /> : <Moon />}
+      <motion.img
+        whileTap={{ scale: [1, 0.8] }}
+        transition={{ duration: 0.8, type: "spring" }}
+        src={colorScheme === "dark" ? Sun : Moon}
+        width={30}
+        className="object-cover"
+        alt="icon theme"
+      />
     </ActionIcon>
   );
 };

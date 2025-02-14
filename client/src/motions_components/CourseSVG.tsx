@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 const CourseSVG = () => {
   return (
     <svg
-      width="60px"
-      height="60px"
+      width="40px"
+      height="40px"
       viewBox="0 0 18 18"
       xmlns="http://www.w3.org/2000/svg"
     >

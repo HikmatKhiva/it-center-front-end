@@ -1,13 +1,16 @@
 import { ActionIcon, Avatar, Indicator, Table } from "@mantine/core";
-import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { getAllGroup } from "../../api/group";
-const GroupTable = () => {
+import DeleteGroupModal from "./DeleteGroupModal";
+const GroupTable = ({
+  data,
+  isLoading,
+  status,
+}: {
+  data: IGroup[];
+  isLoading: boolean;
+  status: boolean;
+}) => {
   const navigate = useNavigate();
-  const { data, isLoading } = useQuery<IGroup[]>({
-    queryKey: ["groups"],
-    queryFn: getAllGroup,
-  });
   const rows = data?.map((group: IGroup) => (
     <Table.Tr key={group.code}>
       <Table.Td>{group.code}</Table.Td>
@@ -20,7 +23,7 @@ const GroupTable = () => {
         <div className="relative w-[40px] h-[40px]">
           <Indicator
             withBorder
-            color={group.is_group_finished ? "red" : "blue"}
+            color={group.is_group_finished ? "red" : "green"}
             processing={!group.is_group_finished}
           >
             <Avatar />
@@ -33,10 +36,17 @@ const GroupTable = () => {
           aria-label="edit"
           aria-labelledby="edit"
           variant="filled"
+          size="md"
+          color="green"
         >
           ✏️
         </ActionIcon>
       </Table.Td>
+      {!group?.is_group_finished && (
+        <Table.Td>
+          <DeleteGroupModal disabled={group?.is_group_finished} id={group.id} />
+        </Table.Td>
+      )}
     </Table.Tr>
   ));
   return (
@@ -51,6 +61,7 @@ const GroupTable = () => {
           <Table.Th>Boshlangan sana</Table.Th>
           <Table.Th>Guruh holati</Table.Th>
           <Table.Th>Sozlash</Table.Th>
+          {!status && <Table.Th>O'chirish</Table.Th>}
         </Table.Tr>
       </Table.Thead>
       <Table.Tbody>{!isLoading && rows}</Table.Tbody>
