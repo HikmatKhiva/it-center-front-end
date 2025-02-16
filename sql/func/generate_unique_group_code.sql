@@ -1,8 +1,10 @@
-
+CREATE OR REPLACE FUNCTION generate_unique_group_code() 
+RETURNS TEXT AS $$
 DECLARE
     new_code TEXT;
 BEGIN
     LOOP
+        -- Generate a new group code
         new_code := (FLOOR(nextval('group_code_seq') / 100) + 100) || '-' || 
                     (FLOOR(nextval('group_code_seq') / 100) + 101);
         
@@ -12,3 +14,4 @@ BEGIN
         END IF;
     END LOOP;
 END;
+$$ LANGUAGE plpgsql;

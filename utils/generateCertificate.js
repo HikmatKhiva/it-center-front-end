@@ -21,7 +21,6 @@ const normalizedRed = red / 255;
 const normalizedGreen = green / 255;
 const normalizedBlue = blue / 255;
 
-
 async function createPdf(student, group, url) {
   try {
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
@@ -76,9 +75,12 @@ async function createPdf(student, group, url) {
       size: 16,
       color: rgb(0, 0, 0),
     });
-
     // date time
-    page.drawText(`${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`, {
+    const day = String(date.getDate()).padStart(2, "0"); // Get day of the month (1-31) and pad with zero if needed
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Get month (0-11, so add 1) and pad with zero
+    const year = date.getFullYear();
+    // date time
+    page.drawText(`${day}.${month}.${year}`, {
       x: 620,
       y: 80,
       font: poppinsFont,
@@ -92,7 +94,6 @@ async function createPdf(student, group, url) {
     }
     const filePath = path.join(newFolder, `${student.id}.pdf`);
     const pdfByte = await pdfDoc.save();
-    console.log(filePath);
 
     fs.writeFileSync(filePath, pdfByte);
     return pdfByte;

@@ -1,6 +1,7 @@
-
+CREATE OR REPLACE FUNCTION update_student_debt() 
+RETURNS TRIGGER AS $$
 DECLARE
-    v_current_debt numeric(10,2);
+    v_current_debt numeric;
 BEGIN
     -- Get the current debt of the student
     SELECT debt INTO v_current_debt
@@ -19,3 +20,4 @@ BEGIN
 
     RETURN NEW;
 END;
+$$ LANGUAGE plpgsql;

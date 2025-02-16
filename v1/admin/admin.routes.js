@@ -7,9 +7,8 @@ import {
   updateNewStudent,
 } from "../newStudents/newStudents.controller.js";
 import {
-  Enable2FA,
-  Verify2FA,
-  adminLogin,
+  downloadGroupZip,
+  // Enable2FA,
   getCourseAndTeachers,
 } from "./admin.controller.js";
 import { newsRoutes } from "../news/news.routes.js";
@@ -22,7 +21,5 @@ adminRoutes.get("/messages", getMessages);
 adminRoutes.delete("/messages/:id", deleteMessage);
 adminRoutes.use("/news", newsRoutes);
 adminRoutes.get("/forms", getCourseAndTeachers);
+adminRoutes.get("/download/certificate/:id", downloadGroupZip);
 // adminRoutes.post("/enable-2fa",Enable2FA);
-
-adminRoutes.post("/login", adminLogin);
-adminRoutes.post("/verify-2fa", Verify2FA);

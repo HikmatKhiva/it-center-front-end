@@ -40,6 +40,7 @@ const createStudent = async (req, res) => {
       `INSERT INTO students (first_name, second_name, passport_id, group_id, course_id, gender) VALUES ($1, $2, $3, $4, $5, $6)`,
       [first_name, second_name, passport_id, group_id, course_id, gender]
     );
+
     return res
       .status(201)
       .json({ message: "O'quvchi muoffaqiyatli yaratildi" });
@@ -113,4 +114,10 @@ const deleteStudent = async (req, res) => {
     return res.status(500).json({ error });
   }
 };
-export { getAllStudents, createStudent, deleteStudent, updateStudent ,filterMonthlyDebtorStudent };
+export {
+  getAllStudents,
+  createStudent,
+  deleteStudent,
+  updateStudent,
+  filterMonthlyDebtorStudent,
+};

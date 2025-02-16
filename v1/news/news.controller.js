@@ -45,7 +45,14 @@ const getAllNews = async (req, res) => {
 const getNews = async (req, res) => {
   try {
     const { id } = req.params;
-    const news = await pool.query(`SELECT * FROM news WHERE id = $1;`, [id]);
+    const news = await pool.query(`SELECT  
+            id, 
+            news_title, 
+            content, 
+			      news_description,
+            created_at,
+            TO_CHAR((created_at AT TIME ZONE 'UTC')::timestamp, 'DD.MM.YYYY') AS created_time
+            FROM news WHERE id = $1;`, [id]);
     return res.status(200).json(news.rows);
   } catch (error) {
     res.status(500).json(error);

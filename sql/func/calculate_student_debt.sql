@@ -1,4 +1,5 @@
-
+CREATE OR REPLACE FUNCTION calculate_debt() 
+RETURNS TRIGGER AS $$
 DECLARE
     v_duration_value integer;
     v_unit text;
@@ -22,3 +23,4 @@ BEGIN
 
     RETURN NEW;
 END;
+$$ LANGUAGE plpgsql;

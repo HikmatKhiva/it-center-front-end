@@ -36,7 +36,6 @@ const getPayments = async (req, res) => {
 const uploadPayments = async (req, res) => {
   try {
     const { student_id, group_id, amount } = req.body;
-    console.log(req.body);
     const students = await pool.query(`SELECT * FROM students WHERE id = $1`, [
       student_id,
     ]);
@@ -45,8 +44,6 @@ const uploadPayments = async (req, res) => {
     }
     const student = students.rows[0];
     if (parseInt(student?.debt) < parseInt(amount)) {
-      console.log("run");
-      
       return res
         .status(400)
         .json({ message: "To'lov miqdori qarz miqdoridan yuqori!" });
@@ -57,7 +54,6 @@ const uploadPayments = async (req, res) => {
     );
     res.status(201).json({ message: "To'lov muoffaqiyatli yuklandi." });
   } catch (error) {
-    // console.log(error.message);
     return res.status(500).json({ error });
   }
 };

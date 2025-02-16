@@ -13,9 +13,11 @@ const generateProcess = async (students, group, origin) => {
       await createCertificate(student, group, origin);
     });
     await client.query(`COMMIT`);
-    pool.query(`UPDATE groups SET is_group_finished = true WHERE id = $1`, [
-      group.id,
-    ]);
+
+    pool.query(
+      `UPDATE groups SET is_group_finished = true, finished_date = CURRENT_TIMESTAMP WHERE id = $1`,
+      [group.id]
+    );
     return "success";
   } catch (error) {
     throw error;
@@ -28,7 +30,7 @@ export const generateCertificate = async (req, res) => {
     const { id } = req.params;
     const groups = await pool.query(
       `
-      SELECT 
+      SELECT
         g.id,
         g.code,
         g.is_group_finished,
@@ -36,41 +38,42 @@ export const generateCertificate = async (req, res) => {
         t.first_name AS teacher_first_name,
         t.second_name AS teacher_second_name,
         c.name AS course_name,
-        COALESCE(
-          json_agg(
-            json_build_object(
-              'id', s.id,
-              'first_name', TRIM(s.first_name),
-              'second_name', TRIM(s.second_name),
-              'group_id', s.group_id,
-              'passport_id', s.passport_id,  
-              'course_id', s.course_id,  
-              'certificate_url',
-                COALESCE(
-                  (
-                    SELECT  sc.certificate_url
-                    FROM students_certificates sc
-                    WHERE sc.student_id = s.id
-                  )
-                )
+        CASE
+            WHEN COUNT(s.id) = 0 THEN '[]'::json 
+            ELSE COALESCE(
+                json_agg(
+                    json_build_object(
+                        'id', s.id,
+                        'first_name', TRIM(s.first_name),
+                        'second_name', TRIM(s.second_name),
+                        'group_id', s.group_id,
+                        'passport_id', s.passport_id,
+                        'course_id', s.course_id,
+                        'certificate_url', (
+                            SELECT sc.certificate_url
+                            FROM students_certificates sc
+                            WHERE sc.student_id = s.id
+                        )
+                    )
+                ) FILTER (WHERE s.id IS NOT NULL),  
+                '[]'::json 
             )
-          ), 
-          json_build_array()
-        ) AS students
-        FROM groups g
-        LEFT JOIN students s ON g.id = s.group_id
-        LEFT JOIN teachers t ON g.teacher_id = t.id
-        LEFT JOIN course c ON g.course_id = c.id
-        WHERE g.id = $1
-        GROUP BY 
-          g.id, 
-          g.code, 
-          g.is_group_finished, 
-          t.first_name, 
-          t.second_name, 
-          c.name
-        ORDER BY 
-        g.id;`,
+        END AS students
+    FROM groups g
+    LEFT JOIN students s ON g.id = s.group_id
+    LEFT JOIN teachers t ON g.teacher_id = t.id
+    LEFT JOIN course c ON g.course_id = c.id
+    WHERE g.id = $1
+    GROUP BY
+        g.id,
+        g.code,
+        g.is_group_finished,
+        t.first_name,
+        t.second_name,
+        c.name
+    ORDER BY
+        g.id;
+    `,
       [id]
     );
     if (groups.rowCount === 0) {
@@ -80,13 +83,16 @@ export const generateCertificate = async (req, res) => {
       (student) => student?.certificate_url === null
     );
     const group = groups.rows[0];
+    if (group.students.length === 0) {
+      return res.status(400).json({ message: "O'quvchilar mavjud emas." });
+    }
     await generateProcess(students, group, origin);
-    return res.status(200).json({ message: "success" });
+    return res.status(200).json({ message: "Sertificatelar tayyor" });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
 };
-// save a certificate url 
+// save a certificate url
 export const createCertificateUrl = async (studentId, group) => {
   try {
     const updateUrl = await pool.query(
@@ -108,6 +114,15 @@ export const findCertificate = async (req, res) => {
       return res.status(400).json({ error: "Manzil xato" });
     let [groupCode, studentId] = code.split("/");
     studentId = studentId.split(".")[0];
+    const studentIdRegex = /^[0-9]+$/; // If studentId should be numeric
+    const groupCodeRegex = /^[a-zA-Z0-9_-]+$/; // If groupCode should be alphanumeric with underscores or dashes
+
+    if (!studentIdRegex.test(studentId)) {
+      return res.status(400).json({ error: "Invalid student ID format" });
+    }
+    if (!groupCodeRegex.test(groupCode)) {
+      return res.status(400).json({ error: "Invalid group code format" });
+    }
     // Validate input types
     if (!studentId || !groupCode) {
       return res.status(400).json({ error: "Manzil xato" });
@@ -134,8 +149,6 @@ export const findCertificate = async (req, res) => {
     fs.accessSync(filePath, fs.constants.F_OK);
     res.sendFile(filePath);
   } catch (error) {
-    console.log(error);
-
     return res.status(500).json({ error: error.message });
   }
 };

@@ -6,7 +6,12 @@ import pkg from "hi-base32";
 import jwt from "jsonwebtoken";
 const { encode } = pkg;
 import dotenv from "dotenv";
+import fs from "fs";
+import path from "path";
+import { promisify } from "util";
+import { zipFolder } from "../../utils/zipFolder.js";
 dotenv.config();
+const unlinkAsync = promisify(fs.unlink); // Promisify fs.unlink for async/await
 const jwtSecret = process.env.jwtSecret;
 const adminLogin = async (req, res) => {
   try {
@@ -21,17 +26,15 @@ const adminLogin = async (req, res) => {
     const admin = find.rows[0];
     const isValid = await bcrypt.compare(password, admin.password);
     if (!isValid) {
-      return res
-        .status(400)
-        .json({ message: "password invalid please check password" });
+      return res.status(400).json({
+        message: "Parol xato iltimos tekshirib qayta urinib ko'ring.",
+      });
     }
     res.status(200).json({
       message: "Login Admin",
       nextStep: true,
     });
   } catch (error) {
-    console.log(error);
-
     res.status(500).json({ message: error });
   }
 };
@@ -64,7 +67,6 @@ const Enable2FA = async (req, res) => {
       },
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -145,4 +147,61 @@ const getCourseAndTeachers = async (req, res) => {
     return res.status(500).json({ error });
   }
 };
-export { adminLogin, Enable2FA, Verify2FA, getCourseAndTeachers };
+
+const downloadGroupZip = async (req, res) => {
+  try {
+    const __dirname = path.resolve();
+    const { id } = req.params;
+    const group = (
+      await pool.query(`SELECT code FROM groups WHERE id = $1`, [id])
+    ).rows;
+    if (group.length === 0) {
+      res.status(404).json({ message: "Guruh topilmadi." });
+    }
+    const groupCode = group[0].code;
+    const folderPath = path.join(
+      __dirname,
+      "public",
+      "certificates",
+      groupCode
+    );
+    await zipFolder(folderPath, groupCode);
+    const zipFilePath = path.join(__dirname, "temp", `${groupCode}.zip`);
+    // 2. Stream the zip file to the response
+    const fileStream = fs.createReadStream(zipFilePath);
+
+    res.set("Content-Disposition", `attachment; filename="${groupCode}.zip"`);
+    res.set("Content-Type", "application/zip");
+    res.status(200);
+
+    fileStream.pipe(res); // Pipe the file stream to the response
+    // 3. Handle stream completion and errors
+    fileStream.on("end", async () => {
+      try {
+        await unlinkAsync(zipFilePath); // Use await with promisified unlink
+        console.log(`Successfully deleted ${zipFilePath}`);
+      } catch (unlinkError) {
+        console.error(`Error deleting ${zipFilePath}:`, unlinkError);
+        // Log the error but don't throw, as the response has already been sent.
+      }
+    });
+    fileStream.on("error", (streamError) => {
+      console.error("Error streaming file:", streamError);
+      // If an error occurs during streaming, you can't change the headers or status code.
+      // You can log the error and potentially send a generic error message to the client if possible.
+      if (!res.headersSent) {
+        res.status(500).send("Error streaming file.");
+      }
+    });
+    return;
+  } catch (error) {
+    return res.status(500).json({ error });
+  }
+};
+export {
+  adminLogin,
+  Enable2FA,
+  Verify2FA,
+  getCourseAndTeachers,
+  downloadGroupZip,
+};

@@ -80,6 +80,7 @@ const getGroup = async (req, res) => {
           ELSE NULL -- Handle non-numeric durations
       END AS total_cost,
       TO_CHAR((groups.created_at AT TIME ZONE 'UTC')::timestamp, 'DD.MM.YYYY') AS created_at,
+      TO_CHAR((groups.finished_date AT TIME ZONE 'UTC')::timestamp, 'DD.MM.YYYY') AS finished_date,
       CASE 
           WHEN SPLIT_PART(groups.duration, ' ', 1) ~ E'^[0-9]+$' THEN 
               TO_CHAR(
@@ -90,8 +91,7 @@ const getGroup = async (req, res) => {
                   'DD.MM.YYYY'
               )
           ELSE NULL 
-      END AS finish_date,
-
+      END AS end_date,
       COALESCE(
           json_agg(
               json_build_object(
