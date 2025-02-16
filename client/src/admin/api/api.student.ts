@@ -12,10 +12,14 @@ export async function createStudent(data: INewStudent, token: string) {
         body: JSON.stringify(data),
       }
     );
+    if(request.status !== 201) {
+      const {error} = await request.json()
+      throw error
+    }
     const response = request.json();
     return response;
   } catch (error: any) {
-    throw new Error(error?.message || "something went wrong");
+    throw error
   }
 }
 // update a student

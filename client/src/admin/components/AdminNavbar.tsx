@@ -11,7 +11,7 @@ import {
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../hooks/redux";
 import { CoolMode } from "../../animation/cool-mode";
-const AdminNavbar = () => {
+const AdminNavbar = ({ close }: { close: () => void }) => {
   const { admin } = useAppSelector((state) => state.admin);
   return (
     <div className="flex flex-col admin-navbar">
@@ -23,6 +23,7 @@ const AdminNavbar = () => {
       </Group>
       <Divider />
       <NavLink
+        onClick={close}
         className="w-full py-2 px-4 flex items-center gap-2  text-lg"
         to="/admin/main"
       >
@@ -30,6 +31,7 @@ const AdminNavbar = () => {
         Bosh sahifa
       </NavLink>
       <NavLink
+        onClick={close}
         className="w-full py-2 px-4 flex items-center gap-2  text-lg"
         to="/admin/group"
       >
@@ -38,6 +40,7 @@ const AdminNavbar = () => {
       </NavLink>
 
       <NavLink
+        onClick={close}
         className="w-full py-2 px-4 flex items-center gap-2  text-lg"
         to="/admin/news"
       >
@@ -45,6 +48,7 @@ const AdminNavbar = () => {
         Yangiliklar
       </NavLink>
       <NavLink
+        onClick={close}
         className="w-full py-2 px-4 flex items-center gap-2  text-lg"
         to="/admin/course"
       >
@@ -52,6 +56,7 @@ const AdminNavbar = () => {
         Kurslar
       </NavLink>
       <NavLink
+        onClick={close}
         className="w-full py-2 px-4 flex items-center gap-2  text-lg"
         to="/admin/teachers"
       >
@@ -59,6 +64,7 @@ const AdminNavbar = () => {
         O'qituvchilar
       </NavLink>
       <NavLink
+        onClick={close}
         className="w-full py-2 px-4 flex items-center gap-2  text-lg"
         to="/admin/messages"
       >
@@ -66,6 +72,7 @@ const AdminNavbar = () => {
         Xabarlar
       </NavLink>
       <NavLink
+        onClick={close}
         className="w-full py-2 px-4 flex items-center gap-2  text-lg"
         to="/admin/students"
       >

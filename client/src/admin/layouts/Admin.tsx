@@ -6,11 +6,16 @@ import { motion } from "motion/react";
 import { AdminIcon } from "../../assets";
 import AdminNavbar from "../components/AdminNavbar";
 import LogoSVG from "../../motions_components/LogoSVG";
+import { useAppDispatch } from "../../hooks/redux";
+import { logout } from "../../lib/redux/reducer/admin";
+// import AdminConfigure from "../components/admin/AdminConfigure";
 const Admin = () => {
-  const [opened, { toggle }] = useDisclosure();
+  const dispatch = useAppDispatch();
+  const [opened, { toggle, close }] = useDisclosure();
   const navigate = useNavigate();
   const handleLogout = () => {
     navigate("/");
+    dispatch(logout())
   };
   return (
     <AppShell
@@ -49,14 +54,15 @@ const Admin = () => {
                 </ActionIcon>
               </Menu.Target>
               <Menu.Dropdown>
+                {/* <AdminConfigure /> */}
                 <Menu.Item onClick={handleLogout}>Logout</Menu.Item>
               </Menu.Dropdown>
             </Menu>
           </div>
         </Group>
       </AppShell.Header>
-      <AppShell.Navbar className="transition-all duration-300">
-        <AdminNavbar />
+      <AppShell.Navbar className="transition-all duration-300 " h="100vh">
+        <AdminNavbar close={close} />
       </AppShell.Navbar>
       <AppShell.Main>
         <Outlet />

@@ -1,8 +1,8 @@
 import { Suspense } from "react";
-
+import LoadingComponent from "./LoadingComponent";
 const LazyLoadPage = ({ Page }: { Page: React.ComponentType }) => {
   return (
-    <Suspense fallback={<h1>Loading</h1>}>
+    <Suspense fallback={<LoadingComponent />}>
       <Page />
     </Suspense>
   );

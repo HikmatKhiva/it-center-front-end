@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { getNews } from "../../api/api.news";
-import { ActionIcon, Button, Divider, Group, Text } from "@mantine/core";
+import { Button, Divider, Group, Text } from "@mantine/core";
 import { ArrowLeft } from "lucide-react";
 const AdminNewsPreview = () => {
   const { id } = useParams();
@@ -22,7 +22,7 @@ const AdminNewsPreview = () => {
         >
           <ArrowLeft size={16} />
         </Button>
-        <Text >Demo ko'rinishi</Text>
+        <Text>Demo ko'rinishi</Text>
       </Group>
       <Divider mt="10" mb="30" />
       <div dangerouslySetInnerHTML={{ __html: news?.content }}></div>

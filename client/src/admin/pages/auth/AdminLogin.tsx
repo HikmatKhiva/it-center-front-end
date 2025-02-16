@@ -26,12 +26,12 @@ import { login } from "../../../lib/redux/reducer/admin";
 const AdminLogin = (props: PaperProps) => {
   const id: MutableRefObject<string | undefined> = useRef();
   const [active, setActive] = useState(0);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const nextStep = () =>
     setActive((current) => (current < 2 ? current + 1 : current));
-  const prevStep = () =>
-    setActive((current) => (current > 0 ? current - 1 : current));
+  // const prevStep = () =>
+  //   setActive((current) => (current > 0 ? current - 1 : current));
   const loginMutation = useMutation({
     mutationFn: adminLogin,
     mutationKey: ["admin", "login"],
@@ -75,7 +75,7 @@ const AdminLogin = (props: PaperProps) => {
         icon: <Check color="#93CE03" />,
       });
       dispatch(login(success.admin));
-      navigate('/admin')
+      navigate("/admin");
     },
     onError: (error) => {
       notifications.update({
@@ -126,7 +126,6 @@ const AdminLogin = (props: PaperProps) => {
     });
     await verifyMutation.mutateAsync({ email: form.values.email, ...data });
   };
-
   return (
     <section className="w-screen h-screen flex-col flex justify-center items-center">
       <Paper
@@ -177,6 +176,8 @@ const AdminLogin = (props: PaperProps) => {
                 />
               </Stack>
               <Button
+                loading={loginMutation.isPending}
+                disabled={loginMutation.isPending}
                 aria-label="login admin page"
                 aria-labelledby="login button"
                 size="md"
@@ -207,10 +208,11 @@ const AdminLogin = (props: PaperProps) => {
                   m="0 auto"
                 />
                 <Button
+                  loading={verifyMutation.isPending}
                   aria-label="login admin page"
                   aria-labelledby="login button"
                   size="sm"
-                  disabled={!!form2FA.errors.token}
+                  disabled={!!form2FA.errors.token || verifyMutation.isPending}
                   m="15px auto 10px"
                   color="green"
                   type="submit"

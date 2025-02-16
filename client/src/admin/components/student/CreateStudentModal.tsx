@@ -3,9 +3,11 @@ import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createStudent } from "../../api/api.student";
-import { Pencil } from "lucide-react";
+import { Check, Pencil, X } from "lucide-react";
 import { studentValidation } from "../../../validation";
 import { useAppSelector } from "../../../hooks/redux";
+import { MutableRefObject, useRef } from "react";
+import { notifications } from "@mantine/notifications";
 const CreateStudent = ({
   course_id,
   group_id,
@@ -14,13 +16,35 @@ const CreateStudent = ({
   group_id: string;
 }) => {
   const { admin } = useAppSelector((state) => state.admin);
+  const idNotification: MutableRefObject<string | undefined> = useRef();
   const [opened, { open, close }] = useDisclosure(false);
   const client = useQueryClient();
-  const { mutateAsync } = useMutation({
-    mutationFn: (student: INewStudent) => createStudent(student, admin?.token || ""),
-    onSuccess: () => {
+  const { mutateAsync, isPending } = useMutation({
+    mutationFn: (student: INewStudent) =>
+      createStudent(student, admin?.token || ""),
+    onSuccess: (response) => {
       client.invalidateQueries({ queryKey: ["students"] });
+      notifications.update({
+        id: idNotification.current,
+        title: "O'quvchi qo'shish.",
+        message: response?.message,
+        color: "white",
+        autoClose: 3000,
+        position: "top-right",
+        icon: <Check color="#93CE03" />,
+      });
       close();
+    },
+    onError: (error: any) => {
+      notifications.update({
+        id: idNotification.current,
+        title: "O'quvchi yaratishda xato bo'ldi.",
+        message: error?.detail,
+        color: "red",
+        autoClose: 3000,
+        position: "top-right",
+        icon: <X color="white" />,
+      });
     },
   });
   const form = useForm({
@@ -35,6 +59,14 @@ const CreateStudent = ({
     validate: studentValidation,
   });
   const handleSubmit = async (student: INewStudent) => {
+    idNotification.current = notifications.show({
+      loading: isPending,
+      title: "Ma'lumotlar uzatilyapti.",
+      message: "Iltimos ma'lumot o'uzatilguncha kutib turing!",
+      color: "blue",
+      position: "top-right",
+      withCloseButton: true,
+    });
     mutateAsync(student);
   };
   return (

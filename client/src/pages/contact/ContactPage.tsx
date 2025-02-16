@@ -29,6 +29,7 @@ const ContactPage = () => {
               value="1"
               ref={setControlRef("1")}
               className={classes.tab}
+              fz={{ base: "12px", sm: "14px" }}
               rightSection={<Image src={Pencil} w={20} alt="pencil 3D" />}
             >
               Kursga yozilish
@@ -36,6 +37,7 @@ const ContactPage = () => {
             <Tabs.Tab
               value="2"
               ref={setControlRef("2")}
+              fz={{ base: "12px", sm: "14px" }}
               className={classes.tab}
               rightSection={<Image src={Mail} w={20} alt="pencil 3D" />}
             >

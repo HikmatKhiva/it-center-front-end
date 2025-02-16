@@ -19,7 +19,7 @@ const MessageDeleteModal = ({ id }: { id: number }) => {
       notifications.update({
         id: _id.current,
         title: "Ma'lumotlar o'chirildi",
-        message: "Biz siz bilan aloqaga chiqamiz!",
+        message: "",
         color: "white",
         autoClose: 3000,
         position: "top-right",

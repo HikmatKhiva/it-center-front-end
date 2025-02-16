@@ -6,7 +6,7 @@ import {
   Image,
 } from "@mantine/core";
 import LogoSVG from "../motions_components/LogoSVG";
-import { CallOnly, Instagram, Location, Telegram } from "../assets";
+import { CallOnly, Location, Telegram } from "../assets";
 const Footer = () => {
   return (
     <footer className="m_9f59b069 m_9bd7b098 ">

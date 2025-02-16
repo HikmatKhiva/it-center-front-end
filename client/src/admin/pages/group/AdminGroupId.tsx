@@ -12,13 +12,14 @@ import {
   ArrowLeft,
   CalendarOff,
   CalendarPlus,
+  DownloadIcon,
   Eye,
   Search,
 } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import CreateStudent from "../../components/student/CreateStudentModal";
-import { getGroup } from "../../api/api.group";
-import { useQuery } from "@tanstack/react-query";
+import { downloadGroupCertificate, getGroup } from "../../api/api.group";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import DeleteStudentModal from "../../components/student/DeleteStudentModal";
 import UpdateStudentModal from "../../components/student/UpdateStudentModal";
 import FinishGroupModal from "../../components/group/FinishGroupModal";
@@ -41,7 +42,11 @@ const AdminGroupId = () => {
     },
     enabled: !!id && !!admin?.token,
   });
-
+  const { mutateAsync } = useMutation({
+    mutationFn: (id: number) =>
+      downloadGroupCertificate(id, admin?.token || ""),
+    mutationKey: ["download", "certificate"],
+  });
   const rows = data?.students
     ?.filter((student: IStudent) =>
       student.first_name.includes(search.trim().toLowerCase())
@@ -90,6 +95,9 @@ const AdminGroupId = () => {
         </Table.Td>
       </Table.Tr>
     ));
+  const handleClickDownload = async (id: number) => {
+    await mutateAsync(id);
+  };
   return (
     <section>
       <Group pb="20" justify="space-between">
@@ -111,10 +119,14 @@ const AdminGroupId = () => {
               <b>{data?.created_at}</b>
             </Text>
           </Tooltip>
-          <Tooltip label="Tugash sana!">
+          <Tooltip
+            label={`${
+              data?.is_group_finished ? "Yakunlangan sana!" : "Yakunlash sanasi!"
+            }`}
+          >
             <Text className="flex gap-1 items-center" fz="14">
               <CalendarOff size="16" />
-              <b>{data?.finish_date}</b>
+              <b>{data?.finished_date ? data?.finished_date : data?.end_date}</b>
             </Text>
           </Tooltip>
         </Group>
@@ -129,6 +141,15 @@ const AdminGroupId = () => {
             <CreateStudent course_id={data?.course_id} group_id={data?.id} />
           )}
           {!data?.is_group_finished && <FinishGroupModal id={id || "1"} />}
+          {data?.is_group_finished && (
+            <Button
+              onClick={() => handleClickDownload(data?.id)}
+              color="green"
+              rightSection={<DownloadIcon />}
+            >
+              Download zip
+            </Button>
+          )}
         </Group>
       </Group>
       <Divider py={10} />

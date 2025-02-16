@@ -154,6 +154,7 @@ interface INews {
   news_description: string;
   content: string;
   created_at: string;
+  created_time:string | null
 }
 
 interface IAnonymMessage {

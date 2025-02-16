@@ -1,3 +1,5 @@
+import { saveAs } from "file-saver";
+
 export async function createGroup(data: INewGroup, token: string) {
   try {
     const request = await fetch(
@@ -70,9 +72,8 @@ export async function getGroup(id: string, token: string) {
     throw new Error(error?.message || "something went wrong");
   }
 }
-
 // get a group
-export async function generateGroupCertificate(id: string) {
+export async function generateGroupCertificate(id: string, token: string) {
   try {
     const request = await fetch(
       `${import.meta.env.VITE_BACKEND_URL}api/v1/certificate/generate/${id}`,
@@ -80,10 +81,11 @@ export async function generateGroupCertificate(id: string) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
         },
       }
     );
-    if (request.status !== 201) {
+    if (request.status !== 200) {
       const error = await request.json();
       throw error;
     }
@@ -93,7 +95,6 @@ export async function generateGroupCertificate(id: string) {
     throw new Error(error?.message || "something went wrong");
   }
 }
-
 // delete a group
 export async function deleteGroup(id: number, token: string) {
   try {
@@ -130,6 +131,41 @@ export async function getAdminStats(token: string) {
     );
     const response = request.json();
     return response;
+  } catch (error: any) {
+    throw new Error(error?.message || "something went wrong");
+  }
+}
+// download groups  certificate
+export async function downloadGroupCertificate(id: number, token: string) {
+  try {
+    const request = await fetch(
+      `${
+        import.meta.env.VITE_BACKEND_URL
+      }api/v1/admin/download/certificate/${id}`,
+      {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (!request.ok) {
+      // Handle non-2xx responses (e.g., 404, 500)
+      const errorText = await request.text(); // Or response.json() if the server sends JSON errors
+      throw new Error(`Download failed: ${request.status} - ${errorText}`);
+    }
+    const blob = await request.blob(); // Get the response as a Blob
+    const contentDisposition = request.headers.get("content-disposition");
+    let filename = `${id}.zip`; // Default filename
+
+    if (contentDisposition) {
+      const filenameMatch = contentDisposition.match(/filename="?([^"]*)"?/);
+      if (filenameMatch && filenameMatch.length > 1) {
+        filename = filenameMatch[1];
+      }
+    }
+    saveAs(blob, filename); // Trigger the download
+    return { success: true }; // Indicate successful download (optional)
   } catch (error: any) {
     throw new Error(error?.message || "something went wrong");
   }

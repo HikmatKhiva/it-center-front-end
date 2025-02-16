@@ -20,7 +20,7 @@ const AdminNewsCreate = () => {
   const { admin } = useAppSelector((state) => state.admin);
   const [content, setContent] = useState<string>("");
   const navigate = useNavigate();
-  const { mutateAsync } = useMutation({
+  const { mutateAsync ,isPending} = useMutation({
     mutationFn: (formData: FormData) => createNews(formData, admin?.token || ""),
     mutationKey: ["news", "create"],
     onSuccess: () => {
@@ -115,6 +115,8 @@ const AdminNewsCreate = () => {
           </ActionIcon>
           <Button
             onClick={handleSubmit}
+            loading={isPending}
+            disabled={isPending}
             aria-label="save news button"
             color="green"
             size="sm"

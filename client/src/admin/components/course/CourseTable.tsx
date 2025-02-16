@@ -1,9 +1,10 @@
-import { Table } from "@mantine/core";
+import { Button, Table } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
 import { getAllCourse } from "../../api/api.course";
 import UpdatedCourseModal from "./UpdatedCourseModal";
 import DeleteCourseModal from "./DeleteCourseModal";
 import { useAppSelector } from "../../../hooks/redux";
+import { Eye } from "lucide-react";
 const CourseTable = ({ search }: { search: string }) => {
   const { admin } = useAppSelector((state) => state.admin);
   const { data, isLoading } = useQuery<ICourse[]>({
@@ -27,6 +28,16 @@ const CourseTable = ({ search }: { search: string }) => {
           <Table.Td>
             <DeleteCourseModal id={course?.id} />
           </Table.Td>
+          <Table.Td>
+            <Button
+              variant="outline"
+              color="green"
+              size="xs"
+              aria-label="see certificate URL"
+            >
+              <Eye />
+            </Button>
+          </Table.Td>
         </Table.Tr>
       ));
   return (
@@ -38,6 +49,7 @@ const CourseTable = ({ search }: { search: string }) => {
           <Table.Th>Yaratilgan sanasi</Table.Th>
           <Table.Th>O'zgartirish</Table.Th>
           <Table.Th>O'chirish</Table.Th>
+          <Table.Th>Demo certificate</Table.Th>
         </Table.Tr>
       </Table.Thead>
       <Table.Tbody>{!isLoading && rows}</Table.Tbody>

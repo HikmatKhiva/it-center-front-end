@@ -13,7 +13,6 @@ import { useForm } from "@mantine/form";
 import { addNewStudentValidation } from "../../validation";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { addNewStudent } from "../../api/api.newStudent";
-import { getAllCourse } from "../../admin/api/api.course";
 import { selectData } from "../../utils/helper";
 import { notifications } from "@mantine/notifications";
 import { course_times } from "../../config";
@@ -35,9 +34,9 @@ const AddNewStudent = (props: PaperProps) => {
     queryFn: getCourseList,
     queryKey: ["courses"],
   });
-  const courses = data?.map((course: ICourse) =>
-    selectData(course.id, course.name)
-  );
+  const courses = Array.isArray(data)
+    ? data?.map((course: ICourse) => selectData(course?.id, course?.name))
+    : [];
   const { mutateAsync, isPending } = useMutation({
     mutationFn: addNewStudent,
     mutationKey: ["newStudent"],
@@ -78,7 +77,7 @@ const AddNewStudent = (props: PaperProps) => {
   };
   return (
     <Paper
-      className="md:w-[400px] w-[90%]"
+      className="md:w-[400px] w-full"
       shadow="md"
       radius="md"
       pos="relative"

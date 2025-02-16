@@ -1,8 +1,8 @@
-import { Button, FileButton, Group, Modal, TextInput } from "@mantine/core";
+import { Button, Group, Modal, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Check, ReceiptText, Wallet, X } from "lucide-react";
+import { Check, Wallet, X } from "lucide-react";
 import { uploadPayment } from "../../api/api.student";
 import { createPaymentValidation } from "../../../validation";
 import { useRef } from "react";

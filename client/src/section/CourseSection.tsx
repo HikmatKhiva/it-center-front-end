@@ -1,6 +1,6 @@
 import { Card, Container, Group, Text, Title } from "@mantine/core";
 import { motion } from "motion/react";
-import { Calendar, HTML, Megaphone2, NoteBook } from "../assets";
+import { Calendar, HTML, NoteBook } from "../assets";
 const CourseSection = () => {
   return (
     <motion.section
@@ -33,7 +33,7 @@ const CourseSection = () => {
             <Title ta="center" size="md">
               Front-End dasturlash
             </Title>
-            <Group align="center"  justify="center">
+            <Group align="center" justify="center">
               <Text>4-6 oygacha</Text>
               <motion.img width="20" src={Calendar} />
             </Group>

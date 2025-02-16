@@ -13,8 +13,8 @@ const adminSlice = createSlice({
       localStorage.setItem("admin", JSON.stringify(state.admin));
     },
     logout: (state) => {
-    //   localStorage.removeItem("admin");
-    //   state.admin = null;
+      localStorage.removeItem("admin");
+      state.admin = null;
     },
   },
 });

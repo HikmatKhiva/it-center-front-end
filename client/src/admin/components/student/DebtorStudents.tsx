@@ -27,7 +27,7 @@ const DebtorStudents = () => {
       <Text fz={{ sm: "md", md: "20px" }} mb="20">
         {currentMonth} oy qarzdor o'quvchilar ro'yxati
       </Text>
-      <Table title="Qarzdorlar ro'yxati.">
+      <Table  title="Qarzdorlar ro'yxati.">
         <Table.Thead>
           <Table.Tr>
             <Table.Th>O'quvchini ismi</Table.Th>

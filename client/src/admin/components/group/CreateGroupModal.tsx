@@ -122,6 +122,7 @@ const CreateGroup = () => {
           </Stack>
           <Button
             loading={isPending}
+            disabled={isPending}
             aria-labelledby="create new group button"
             aria-label="create new group"
             size="sm"

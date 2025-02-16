@@ -23,6 +23,7 @@ export { default as CallOnly } from "./3D/3dicons-call-only-front-color.png";
 export { default as Location } from "./3D/3dicons-map-pin-front-color.png";
 export { default as Instagram } from "./3D/icons8-instagram-94.png";
 export { default as Computer } from "./3D/3dicons-computer-iso-color.png";
+export { default as Zoom } from "./3D/3dicons-zoom-dynamic-color.png";
 
 export { default as HTML } from "./course/html.png";
 export { default as Arduino } from "./course/arduino.png";

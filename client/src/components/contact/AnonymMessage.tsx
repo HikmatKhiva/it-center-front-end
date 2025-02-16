@@ -21,7 +21,6 @@ const AnonymMessage = (props: PaperProps) => {
     mutationFn: anonymMessage,
     mutationKey: ["anonym", "message"],
     onSuccess: () => {
-      console.log(id.current);
       notifications.update({
         id: id.current,
         loading: false,
@@ -68,7 +67,7 @@ const AnonymMessage = (props: PaperProps) => {
   return (
     <>
       <Paper
-        className="md:w-[400px] w-[90%]"
+        className="md:w-[400px] w-full"
         shadow="md"
         radius="md"
         p="lg"

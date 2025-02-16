@@ -9,8 +9,8 @@ import NewOpenedGroup from "../components/announcement/NewOpenedGroup";
 import { useQuery } from "@tanstack/react-query";
 import { getNewGroupList } from "../api/api.helper";
 const Header = () => {
-  const [opened, { toggle }] = useDisclosure(false);
-  const { data, isLoading } = useQuery({
+  const [opened, { toggle,close }] = useDisclosure(false);
+  const { data } = useQuery({
     queryKey: ["openedGroups"],
     queryFn: getNewGroupList,
   });
@@ -40,7 +40,16 @@ const Header = () => {
                 visibleFrom="sm"
               >
                 {navLinks?.map((link: ILinks) => (
-                  <NavLink key={link.id} to={link.link}>
+                  <NavLink
+                  onClick={close}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-[#93CE03]"
+                        : "hover:text-[#93CE03] transition-all duration-300"
+                    }
+                    key={link.id}
+                    to={link.link}
+                  >
                     {link.label}
                   </NavLink>
                 ))}
@@ -48,7 +57,7 @@ const Header = () => {
             </Group>
             <Group align="flex-start">
               <ThemeControl />
-              {(Array.isArray(data) && data.length > 0) && (
+              {Array.isArray(data) && data.length > 0 && (
                 <NewOpenedGroup groupList={data} />
               )}
             </Group>
@@ -67,7 +76,7 @@ const Header = () => {
 
       <AppShell.Navbar py="md" px={4}>
         {navLinks?.map((link: ILinks) => (
-          <NavLink className="p-2" key={link.id} to={link.link}>
+          <NavLink onClick={close} className="p-2" key={link.id} to={link.link}>
             {link.label}
           </NavLink>
         ))}

@@ -1,7 +1,7 @@
 export const adminLogin = async (data: any) => {
   try {
     const request = await fetch(
-      `${import.meta.env.VITE_BACKEND_URL}api/v1/admin/login`,
+      `${import.meta.env.VITE_BACKEND_URL}api/v1/auth/admin/login`,
       {
         method: "POST",
         headers: {
@@ -45,7 +45,7 @@ export const adminFormData = async (token: string) => {
 export const adminVerify = async (data: any) => {
   try {
     const request = await fetch(
-      `${import.meta.env.VITE_BACKEND_URL}api/v1/admin/verify-2fa`,
+      `${import.meta.env.VITE_BACKEND_URL}api/v1/auth/admin/verify-2fa`,
       {
         method: "POST",
         headers: {

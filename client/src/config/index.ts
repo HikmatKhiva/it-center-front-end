@@ -1,6 +1,7 @@
 export const navLinks: ILinks[] = [
   { id: 1, link: "/news", label: "Yangiliklar" },
   { id: 2, link: "/contact", label: "Bog'lanish" },
+  // { id: 3, link: "/vacancy", label: "Vacancy" },
 ];
 
 export const selectMonths: { label: string; value: string }[] = [
