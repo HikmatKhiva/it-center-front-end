@@ -1,52 +1,52 @@
 {
-  "name": "it-center-front-end",
-  "private": true,
-  "version": "1.1.2",
-  "author": {
-    "name": "Hikmat Bekturdiyev",
-    "email": "xikmatkhiva.4s@gmail.com",
-    "url": "hikmatbek.uz"
-  },
+  "name": "it_center_khiva",
+  "version": "1.0.0",
+  "description": "",
   "type": "module",
+  "main": "app.js",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "server": "nodemon app.js",
+    "client": "npm run dev --prefix client",
+    "install": "concurrently \"npm install\" \"npm install --prefix client\"",
+    "build": "npm run build --prefix client",
+    "dev": "cross-env NODE_ENV=development concurrently \"npm run server \" \"npm run client \" ",
+    "lint": "npx eslint"
   },
-  "dependencies": {
-    "@portabletext/react": "^3.0.4",
-    "@reduxjs/toolkit": "^1.9.5",
-    "@sanity/client": "^6.1.2",
-    "@sanity/image-url": "^1.0.2",
-    "@splinetool/react-spline": "^2.2.6",
-    "@tanstack/react-query": "^4.29.14",
-    "@tanstack/react-query-devtools": "^4.29.14",
-    "framer-motion": "^10.12.16",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.9.0",
-    "react-lazy-load-image-component": "^1.6.0",
-    "react-redux": "^7.2.9",
-    "react-router-dom": "^6.11.2",
-    "react-tilt": "^1.0.2",
-    "react-toastify": "^9.1.3",
-    "react-tooltip": "^5.13.1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HikmatKhiva/it-center-front-end.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HikmatKhiva/it-center-front-end/issues"
   },
   "devDependencies": {
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "@types/react-lazy-load-image-component": "^1.5.3",
-    "@typescript-eslint/eslint-plugin": "^5.57.1",
-    "@typescript-eslint/parser": "^5.57.1",
-    "@vitejs/plugin-react": "^4.0.0",
-    "autoprefixer": "^10.4.14",
-    "eslint": "^8.38.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.3.4",
-    "postcss": "^8.4.23",
-    "tailwindcss": "^3.3.2",
-    "typescript": "^5.0.2",
-    "vite": "^4.3.2"
+    "@eslint/js": "^9.20.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.20.1",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "@pdf-lib/fontkit": "^1.1.1",
+    "archiver": "^7.0.1",
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^2.5.1",
+    "concurrently": "^8.2.2",
+    "config": "^3.3.12",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "hi-base32": "^0.5.1",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "otpauth": "^9.3.6",
+    "otplib": "^12.0.1",
+    "pdf-lib": "^1.17.1",
+    "pg": "^8.13.1",
+    "qrcode": "^1.5.4",
+    "rate-limiter-flexible": "^5.0.5"
   }
 }
