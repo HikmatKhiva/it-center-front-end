@@ -25,6 +25,7 @@ import {
   LoadAdminNewStudents,
   LoadAdminNewsPreview,
   LoadAdminNewsUpdate,
+  LoadNotPage,
 } from "./admin/pages";
 // Admin Layout
 import { LoadAdminLayout } from "./admin/layouts";
@@ -119,5 +120,9 @@ export const routes = createBrowserRouter([
   {
     path: "/auth",
     element: <LazyLoadPage Page={LoadAdminLogin} />,
+  },
+  {
+    path: "*",
+    element: <LazyLoadPage Page={LoadNotPage} />,
   },
 ]);

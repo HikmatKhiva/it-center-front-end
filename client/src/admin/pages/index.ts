@@ -11,3 +11,4 @@ export const LoadAdminNewsUpdate = lazy(() => import("./news/AdminNewsUpdate"));
 export const LoadAdminTeachers = lazy(() => import("./teachers/AdminTeachers"));
 export const LoadAdminNewStudents = lazy(() => import("./students/Students"));
 export const LoadAdminHome = lazy(() => import("./AdminHome"));
+export const LoadNotPage = lazy(() => import("./404Page"));

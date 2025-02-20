@@ -1,13 +1,15 @@
 import express from "express";
 import cors from "cors";
 import { V1Routes } from "./v1/index.routes.js";
-const app = express();
-const PORT = process.env?.PORT || 5000;
-import { rateLimiterMiddleware } from "./middleware/rateLimiter.js";
-import { findCertificate } from "./v1/certificates/certificates.controller.js";
 import morgan from "morgan";
 import path from "path";
+import helmet from "helmet";
+
+import { rateLimiterMiddleware } from "./middleware/rateLimiter.js";
+import { findCertificate } from "./v1/certificates/certificates.controller.js";
 const __dirname = path.resolve()
+const app = express();
+const PORT = process.env?.PORT || 5000;
 // middlewares
 // Use the rate limiter middleware
 app.use(rateLimiterMiddleware);
@@ -15,6 +17,8 @@ app.use(morgan('combined'))
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(helmet());
+
 // routes
 app.use("/api/v1", V1Routes);
 app.get("/certificate",findCertificate)

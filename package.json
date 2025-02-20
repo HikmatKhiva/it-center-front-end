@@ -7,8 +7,6 @@
   "scripts": {
     "server": "nodemon app.js",
     "client": "npm run dev --prefix client",
-    "install": "concurrently \"npm install\" \"npm install --prefix client\"",
-    "build": "npm run build --prefix client",
     "dev": "cross-env NODE_ENV=development concurrently \"npm run server \" \"npm run client \" ",
     "lint": "npx eslint"
   },
@@ -38,12 +36,12 @@
     "config": "^3.3.12",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "helmet": "^8.0.0",
     "hi-base32": "^0.5.1",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "otpauth": "^9.3.6",
-    "otplib": "^12.0.1",
     "pdf-lib": "^1.17.1",
     "pg": "^8.13.1",
     "qrcode": "^1.5.4",
