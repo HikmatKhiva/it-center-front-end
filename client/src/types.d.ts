@@ -105,7 +105,7 @@ interface IAddStudent {
   course_time: string;
 }
 interface IAddStudents {
-  id:number;
+  id: number;
   full_name: string;
   phone: string;
   course_time: string;
@@ -154,7 +154,7 @@ interface INews {
   news_description: string;
   content: string;
   created_at: string;
-  created_time:string | null
+  created_time: string | null;
 }
 
 interface IAnonymMessage {
@@ -186,4 +186,8 @@ interface IAdmin {
   token: string;
   photo_url: string;
   expirationTime?: number;
+}
+interface IAdminProfile {
+  email: string;
+  username: string;
 }

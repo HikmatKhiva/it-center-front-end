@@ -71,7 +71,7 @@ const FinishGroupModal = ({ id }: { id: string }) => {
     idNotification.current = notifications.show({
       loading: isPending,
       title: "Ma'lumotlar uzatilyapti.",
-      message: "Iltimos ma'lumot o'uzatilguncha kutib turing!",
+      message: "Iltimos ma'lumot uzatilguncha kutib turing!",
       color: "blue",
       position: "top-right",
       withCloseButton: true,

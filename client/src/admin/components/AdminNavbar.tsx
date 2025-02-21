@@ -9,17 +9,19 @@ import {
   Users,
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
-import { useAppSelector } from "../../hooks/redux";
-import { CoolMode } from "../../animation/cool-mode";
+// import { useAppSelector } from "../../hooks/redux";
+// import { CoolMode } from "../../animation/cool-mode";
+// import AdminConfigure from "./admin/AdminConfigure";
 const AdminNavbar = ({ close }: { close: () => void }) => {
-  const { admin } = useAppSelector((state) => state.admin);
+  // const { admin } = useAppSelector((state) => state.admin);
   return (
     <div className="flex flex-col admin-navbar">
       <Group align="center" gap="5" className="pt-5 pb-3">
         <h3 className="text-xl px-4 ">Boshqaruv Paneli </h3>
-        <CoolMode>
-          <Avatar src={admin?.photo_url} alt={`${admin?.username} photo`} />
-        </CoolMode>
+        {/* <CoolMode>
+        <AdminConfigure />
+        </CoolMode> */}
+          {/* <Avatar src={admin?.photo_url} alt={`${admin?.username} photo`} /> */}
       </Group>
       <Divider />
       <NavLink

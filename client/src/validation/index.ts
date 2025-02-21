@@ -86,3 +86,8 @@ export const tokenValidation = {
       ? "Code to'liq kiriting"
       : null,
 };
+export const adminValidate = {
+  email: (val: string) => (/^\S+@\S+$/.test(val) ? null : "Invalid email"),
+  username: (val: string) =>
+    /^.{4,}$/.test(val) ? null : "Ism kiritlishi shart",
+}

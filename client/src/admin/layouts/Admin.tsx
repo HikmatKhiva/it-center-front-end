@@ -8,7 +8,7 @@ import AdminNavbar from "../components/AdminNavbar";
 import LogoSVG from "../../motions_components/LogoSVG";
 import { useAppDispatch } from "../../hooks/redux";
 import { logout } from "../../lib/redux/reducer/admin";
-// import AdminConfigure from "../components/admin/AdminConfigure";
+import AdminConfigure from "../components/admin/AdminConfigure";
 const Admin = () => {
   const dispatch = useAppDispatch();
   const [opened, { toggle, close }] = useDisclosure();
@@ -39,8 +39,9 @@ const Admin = () => {
             <LogoSVG />
           </div>
           <div className="flex items-center gap-4">
+            <AdminConfigure />
             <ThemeControl />
-            <Menu>
+            {/* <Menu>
               <Menu.Target>
                 <ActionIcon variant="default" size="lg">
                   <motion.img
@@ -54,10 +55,10 @@ const Admin = () => {
                 </ActionIcon>
               </Menu.Target>
               <Menu.Dropdown>
-                {/* <AdminConfigure /> */}
+             
                 <Menu.Item onClick={handleLogout}>Logout</Menu.Item>
               </Menu.Dropdown>
-            </Menu>
+            </Menu> */}
           </div>
         </Group>
       </AppShell.Header>

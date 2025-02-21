@@ -1,3 +1,4 @@
+import { v2 as cloudinary } from "cloudinary";
 import { pool } from "../../db/db.js";
 import bcrypt from "bcrypt";
 import { TOTP } from "otpauth";
@@ -198,10 +199,63 @@ const downloadGroupZip = async (req, res) => {
     return res.status(500).json({ error });
   }
 };
+
+const uploadImage = async (req, res) => {
+  try {
+    const image = req.file;
+    const { email } = req.body;
+    const find = await pool.query(`SELECT * FROM admin WHERE email = $1`, [
+      email,
+    ]);
+    if (find.rowCount === 0) {
+      return res.status(404).json({ message: "Hisob topilmadi" });
+    }
+    await cloudinary.uploader
+      .upload(image?.path, {
+        folder: "admin",
+      })
+      .then(async (result) => {
+        await pool.query(`UPDATE admin SET photo_url = $1 WHERE email = $2`, [
+          result?.url,
+          email,
+        ]);
+        fs.unlinkSync(image.path);
+        return res
+          .status(200)
+          .json({ message: "Surat yuklandi.", photo_url: result?.url });
+      });
+  } catch (error) {
+    return res.status(500).json({ error });
+  }
+};
+const updateProfile = async (req, res) => {
+  const { email, username } = req.body;
+  const find = await pool.query(`SELECT * FROM admin WHERE email = $1`, [
+    email,
+  ]);
+  if (find.rowCount === 0) {
+    return res.status(404).json({ message: "Hisob topilmadi" });
+  }
+  await pool.query(
+    `UPDATE admin SET 
+      email = COALESCE($1, email), 
+      username =COALESCE($2, username)
+      WHERE email = $1`,
+    [email, username]
+  );
+  res
+    .status(200)
+    .json({
+      message: "Hisob ma'lumotlari yangilandi.",
+      admin: { email, username },
+    });
+};
 export {
   adminLogin,
   Enable2FA,
   Verify2FA,
   getCourseAndTeachers,
   downloadGroupZip,
+  uploadImage,
+  updateProfile,
 };

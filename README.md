@@ -1,7 +1,7 @@
 # IT-Khiva Backend 
 
 ## How to run backend
-- create .env file
+- create ```.env``` file
 - add variables demo ```.env.example```
 - install packages ```npm install ```   
 - run command ``` npm run server ```
@@ -20,6 +20,3 @@
 - this url generate and save for admin secret key ```Google authenticator```
 - download ```Google authenticator```
 - save your ```Google authenticator``` secret key
-
-## enter admin profile
-- url ```admin```
