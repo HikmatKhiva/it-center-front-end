@@ -90,15 +90,14 @@ const Verify2FA = async (req, res) => {
       digits: 6,
       secret: admin?.secret,
     });
-
     const delta = totp.validate({ token });
-    const jwToken = jwt.sign({ email, token }, jwtSecret, { expiresIn: "3d" });
     if (delta === null) {
       return res.status(401).json({
         status: "fail",
         message: "Authenticator code xato.",
       });
     }
+    const jwToken = jwt.sign({ email, token }, jwtSecret, { expiresIn: "3d" });
     return res.json({
       message: "Authentication successful",
       admin: {
